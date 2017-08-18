@@ -87,7 +87,7 @@ object SentiClassifier {
     var testerNegative = negSplits(1)
     var testerPositive = posSplits(1)
 
-    /* Commentare le seguenti linee per ingrandire l'insieme di test
+    /* DEcommentare le seguenti linee per ingrandire l'insieme di test
     *  con i tweet usati in fase di apprendimento
     *
     */
