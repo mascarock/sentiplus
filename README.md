@@ -22,3 +22,18 @@ Note: this software is documentend and written in italian.
 
 If you want a translation or explanation please MP me
 
+## Esecuzione
+
+Se si vuole eseguire il codice già compilato, eseguire i seguenti comandi
+
+```shell
+$ cd target
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-4.0-SNAPSHOT.jar
+```
+
+Se si vuole compilare in autonomia dopo aver modificato o meno il sorgente, eseguire lo script  make
+```shell
+$ ./make
+```
+
+
