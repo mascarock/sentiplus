@@ -26,7 +26,7 @@ I dovuti approfondimenti saranno discussi nella tesi di laurea associata al prog
 
 ## Esecuzione
 
-Prima di eseguire il file controllare i requisiti di sistema nel file REQUIREMENST(https://github.com/mascarock/sentiplus/blob/master/REQUIREMENTS(
+Prima di eseguire il file controllare i requisiti di sistema nel file REQUIREMENST(https://github.com/mascarock/sentiplus/blob/master/REQUIREMENTS)
 
 Se si vuole eseguire il codice già compilato, eseguire i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
 
