@@ -1,8 +1,5 @@
 # Sentiplus
 
-a Cura di Niccolò Mascaro
-Realizzato nell'ambito del tirocinio interno presso l'Università di Roma "Sapienza"
-
 Un classificatore per individuare il sentimento dei tweet
 
 L'obiettivo di Sentiplus è indidivudare il sentimento di un dataset di tweet strutturato come segue:
@@ -21,6 +18,7 @@ La stringa che segue il carattere "|" rappresenta il tweet da analizzare.
 ## Funzionamento
 
 Il funzionamento del classificatore prevede l'utilizzo di un algoritmo di classificazione denominato L-BFG
+
 I dovuti approfondimenti saranno discussi nella tesi di laurea associata al progetto.
 
 
@@ -76,6 +74,13 @@ grazie per aver usato Sentiplus.
 
 
 ---
+
+a Cura di Niccolò Mascaro
+
+Realizzato nell'ambito del tirocinio interno presso l'Università di Roma "Sapienza"
+
+
+
 Sentiplus - a Classifier for twitter sentiment analysis.
 
 Note: this software is documented and written in italian.
