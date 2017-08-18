@@ -6,9 +6,11 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * Classe SentiPlus
   * costituisce il Main del sistema
+  * che va eseguito
   *
   */
 object SentiPlus {
+
 
   def main(args: Array[String]) {
     /* Leggi il file di testo e tokenizza */
