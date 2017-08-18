@@ -24,7 +24,7 @@ If you want a translation or explanation please MP me
 
 ## Esecuzione
 
-Prima di eseguire il file controllare il file "REQUIREMENTS"
+Prima di eseguire il file controllare i requisiti di sistema nel file "REQUIREMENTS"
 
 Se si vuole eseguire il codice già compilato, eseguire i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
 
@@ -38,4 +38,35 @@ Se si vuole compilare in autonomia dopo aver modificato o meno il sorgente, eseg
 $ ./make
 ```
 
+Questo è un estratto di risultato che si dovrebbe ottenere eseguendo il comando spark-submit
+```shell
+
+[...]
+
+Tweet in esame: marino gli ha preparato un buon intrallazzo e lui e  immediatamente pa ito   si pa ito di testa
+> Previsione:  0.0
+> Etichetta: 0
+OK! :)
+
+Tweet in esame:  mafiacapitale  alemanno e marino conoscevano le irregolarit  negli appalti
+> Previsione:  0.0
+> Etichetta: 0
+OK! :)
+
+Tweet in esame:  chiocci    alemanno mi chiese di incontrare buzzi   mafiacapitale   si arricchisce ogni giorno di pi
+> Previsione:  0.0
+> Etichetta: 0
+OK! :)
+
+
+++++++++ RISULTATI ++++++++++
+Identificati: 555 su 612
+Accuratezza: 90.68627450980392%
+Precisione: 9.090909090909092
+Richiamo: 5.128205128205128
+
+grazie per aver usato Sentiplus.
+
+
+```
 
