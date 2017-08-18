@@ -1,7 +1,5 @@
 # Sentiplus 
-Classifier for twitter sentiment analysis.
-
-Classificatore per individuare il sentimento dei tweet 
+Un classificatore per individuare il sentimento dei tweet 
 
 
 Questo progetto serve ad indidivudare il sentimento dato un file di testo strutturato come segue:
@@ -19,6 +17,7 @@ Valore numerico | Sentimento
 
 
 ---
+Sentiplus - a Classifier for twitter sentiment analysis.
 Note: this software is documentend and written in italian. 
 If you want a translation or explanation please MP me
 
