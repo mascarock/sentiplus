@@ -1,4 +1,4 @@
-# sentiplus
+# Sentiplus
 
 Classificatore per individuare il sentimento dei tweet | Classifier for twitter sentiment analysis.
 Questo progetto serve ad indidivudare il sentimento dato un file di testo strutturato come segue:
