@@ -1,0 +1,1 @@
+spark-submit --class app.SentiPlus --master local[2] Sentiplus-4.0-SNAPSHOT.jar
