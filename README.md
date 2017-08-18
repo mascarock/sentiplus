@@ -39,7 +39,7 @@ $ ./make
 ```
 
 Questo è un estratto di risultato che si dovrebbe ottenere eseguendo il comando spark-submit
-```shell
+```
 
 [...]
 
