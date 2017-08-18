@@ -17,6 +17,8 @@ La stringa che segue il carattere "|" rappresenta il tweet da analizzare.
 
 ---
 Sentiplus - a Classifier for twitter sentiment analysis.
+
 Note: this software is documentend and written in italian. 
+
 If you want a translation or explanation please MP me
 
