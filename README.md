@@ -26,14 +26,15 @@ I dovuti approfondimenti saranno discussi nella tesi di laurea associata al prog
 
 Prima di eseguire il file controllare i requisiti di sistema nel file [REQUIREMENTS](https://github.com/mascarock/sentiplus/blob/master/REQUIREMENTS)
 
-Se si vuole eseguire il codice già compilato, eseguire i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
+Se si vuole lanciare Sentiplus compilato, eseguire i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
 
 ```shell
 $ cd target
-$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-4.0-SNAPSHOT.jar
+$ ./run
+
 ```
 
-Se si vuole compilare in autonomia dopo aver modificato o meno il sorgente, eseguire lo script  make
+Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente, eseguire lo script  run
 ```shell
 $ ./make
 ```
