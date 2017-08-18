@@ -1,12 +1,16 @@
-# Sentiplus
+# Sentiplus 
+Classifier for twitter sentiment analysis.
 
-Classificatore per individuare il sentimento dei tweet | Classifier for twitter sentiment analysis.
+Classificatore per individuare il sentimento dei tweet 
+
+
 Questo progetto serve ad indidivudare il sentimento dato un file di testo strutturato come segue:
 
 > 0.0|#Marino si e' dimessoooo??? Non ci credo!!!   #MAFIACAPITALE  #Romaliberata
 
 L'elemento numerico che precede il carattere "|" costituisce il valore che indica il sentimento
-La setringa che segue il carattere "|" rappresenta il tweet
+
+La stringa che segue il carattere "|" rappresenta il tweet
 
 Valore numerico | Sentimento
 ------------ | -------------
