@@ -7,8 +7,8 @@ Questo progetto serve ad indidivudare il sentimento dato un file di testo strutt
 
 L'elemento numerico che precede il carattere "|" costituisce il valore che indica il sentimento
 
-> 0.0 - sentimento negativo
-> 1.0 - sentimento positivo
+0.0 - sentimento negativo
+1.0 - sentimento positivo
 
 
 
