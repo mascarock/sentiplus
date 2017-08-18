@@ -1,8 +1,11 @@
-# Sentiplus 
-Un classificatore per individuare il sentimento dei tweet 
+# Sentiplus
 
+a Cura di Niccolò Mascaro
+Realizzato nell'ambito del tirocinio interno presso l'Università di Roma "Sapienza"
 
-Questo progetto serve ad indidivudare il sentimento dato un file di testo strutturato come segue:
+Un classificatore per individuare il sentimento dei tweet
+
+L'obiettivo di Sentiplus è indidivudare il sentimento di un dataset di tweet strutturato come segue:
 
 > 0.0|#Marino si e' dimessoooo??? Non ci credo!!!   #MAFIACAPITALE  #Romaliberata
 
@@ -15,16 +18,15 @@ Valore numerico | Sentimento
 
 La stringa che segue il carattere "|" rappresenta il tweet da analizzare.
 
----
-Sentiplus - a Classifier for twitter sentiment analysis.
+## Funzionamento
 
-Note: this software is documentend and written in italian. 
+Il funzionamento del classificatore prevede l'utilizzo di un algoritmo di classificazione denominato L-BFG
+I dovuti approfondimenti saranno discussi nella tesi di laurea associata al progetto.
 
-If you want a translation or explanation please MP me
 
 ## Esecuzione
 
-Prima di eseguire il file controllare i requisiti di sistema nel file "REQUIREMENTS"
+Prima di eseguire il file controllare i requisiti di sistema nel file REQUIREMENST(https://github.com/mascarock/sentiplus/blob/master/REQUIREMENTS(
 
 Se si vuole eseguire il codice già compilato, eseguire i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
 
@@ -70,3 +72,11 @@ grazie per aver usato Sentiplus.
 
 ```
 
+
+
+---
+Sentiplus - a Classifier for twitter sentiment analysis.
+
+Note: this software is documentend and written in italian.
+
+If you want a translation or explanation please MP me
