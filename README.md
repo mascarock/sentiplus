@@ -24,7 +24,7 @@ If you want a translation or explanation please MP me
 
 ## Esecuzione
 
-Se si vuole eseguire il codice già compilato, eseguire i seguenti comandi
+Se si vuole eseguire il codice già compilato, eseguire i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
 
 ```shell
 $ cd target
