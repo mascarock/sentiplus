@@ -34,7 +34,8 @@ $ ./run
 
 ```
 
-Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente, eseguire lo script  run
+Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente, eseguire lo script make
+
 ```shell
 $ ./make
 ```
