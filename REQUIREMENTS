@@ -1,0 +1,13 @@
+in breve
+
+* Java
+* Scala
+* Apache Spark
+
+
+Versioni
+
+* scala-sdk >= 2.10.4
+* java-jdk > 1.8.0
+* spark-assembly >= 1.6.0
+* hadoop >= 2.6.0

@@ -166,7 +166,7 @@ object SentiClassifier {
     val precision = tp / (tp + fp).toDouble * 100
     val recall = tp / (tp + fn).toDouble * 100
 
-    println("++++++++ RISULTATI ++++++++++")
+    println(${Console.RED} "++++++++ RISULTATI ++++++++++")
     println("Identificati: " + (tp + tn) + " su " + riga)
     println("Accuratezza: " + accuracy + "%")
     println("Precisione: " + precision)
