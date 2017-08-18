@@ -6,15 +6,14 @@ Questo progetto serve ad indidivudare il sentimento dato un file di testo strutt
 
 > 0.0|#Marino si e' dimessoooo??? Non ci credo!!!   #MAFIACAPITALE  #Romaliberata
 
-L'elemento numerico che precede il carattere "|" costituisce il valore che indica il sentimento
-
-La stringa che segue il carattere "|" rappresenta il tweet
+L'elemento numerico che precede il carattere "|" costituisce il valore che indica il sentimento, codificato come segue
 
 Valore numerico | Sentimento
 ------------ | -------------
 0.0 | Negativo
 1.0 | Positivo
 
+La stringa che segue il carattere "|" rappresenta il tweet da analizzare.
 
 ---
 Sentiplus - a Classifier for twitter sentiment analysis.
