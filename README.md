@@ -30,16 +30,19 @@ Il file [config.sp](https://github.com/mascarock/sentiplus/blob/master/target/da
 
 Riga| Significato
 ------------ | -------------
-1 | Random Seed per i tweet positivi
-2 | Random Seed per i tweet negativi
+1 | Random Seed per mischiare i tweet positivi
+2 | Random Seed per mischiare i tweet negativi
 3 | Numero di Features
 
+Il random Seed è qualsiasi numero intero a 32 bit, utilizzato per controllare la sequenza generata da un'esecuzione di un algoritmo di divisione randomica. Ciascun Seed corrisponde a una e una sola sequenza. La più piccola modifica di quel numero potrebbe generare in una squenza completamente diversa.
+
+Il numero di features rappresenta il numero di parole per allenare il modello matematico.
 
 ## Esecuzione
 
 Prima di eseguire il file controllare i requisiti di sistema nel file [REQUIREMENTS](https://github.com/mascarock/sentiplus/blob/master/REQUIREMENTS)
 
-Se si vuole lanciare Sentiplus compilato, eseguire i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
+Se si vuole eseguire Sentiplus compilato, digitare i seguenti comandi, all'interno della cartella "sentiplus" clonata dal repository.
 
 ```shell
 $ cd target
@@ -48,32 +51,25 @@ $ spark-submit --class app.SentiPlus --master local[2] Sentiplus-#VERSION#-SNAPS
 ```
 
 
-Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente, eseguire lo script make dalla cartella sentiplus
+Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente tramite un IDE che supporta Maven, eseguire lo script make dalla cartella sentiplus.
 
 ```shell
 $ ./make
 ```
 
-Questo è un estratto di risultato che si dovrebbe ottenere eseguendo il comando di cui sopra
+### Esempio di esecuzione 
+
+Questo comando utilizza il dataset "1" riguardante il topic "politica2015"
+```shell
+$ cd target
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-#VERSION#-SNAPSHOT.jar 1 
+```
+si otterrà:
+
+
 ```
 
 [...]
-
-Tweet in esame: marino gli ha preparato un buon intrallazzo e lui e  immediatamente pa ito   si pa ito di testa
-> Previsione:  0.0
-> Etichetta: 0
-OK! :)
-
-Tweet in esame:  mafiacapitale  alemanno e marino conoscevano le irregolarit  negli appalti
-> Previsione:  0.0
-> Etichetta: 0
-OK! :)
-
-Tweet in esame:  chiocci    alemanno mi chiese di incontrare buzzi   mafiacapitale   si arricchisce ogni giorno di pi
-> Previsione:  0.0
-> Etichetta: 0
-OK! :)
-
 
 ++++++++ RISULTATI ++++++++++
 Identificati: 555 su 612
@@ -85,6 +81,8 @@ grazie per aver usato Sentiplus.
 
 
 ```
+
+Questo comando utilizza il dataset "2" riguardante il topic "politica2015"
 
 
 
