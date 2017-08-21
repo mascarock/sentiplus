@@ -5,14 +5,14 @@ L'obiettivo di Sentiplus è indidivudare il sentimento di un dataset di tweet st
 
 > 0.0|#Marino si e' dimessoooo??? Non ci credo!!!   #MAFIACAPITALE  #Romaliberata
 
-L'elemento numerico che precede il carattere "|" costituisce il valore che indica il sentimento, codificato come segue
+L'elemento numerico che precede il carattere \"|\" costituisce il valore che indica il sentimento, codificato come segue
 
 Valore numerico | Sentimento
 ------------ | -------------
 0.0 | Negativo
 1.0 | Positivo
 
-La stringa che segue il carattere "|" rappresenta il tweet da analizzare.
+La stringa che segue il carattere \"|\" rappresenta il tweet da analizzare.
 
 ## Funzionamento
 
