@@ -30,17 +30,18 @@ Se si vuole lanciare Sentiplus compilato, eseguire i seguenti comandi, all'inter
 
 ```shell
 $ cd target
-$ ./run
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-#VERSION-SNAPSHOT.jar 1 
 
 ```
 
-Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente, eseguire lo script make
+
+Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente, eseguire lo script make dalla cartella sentiplus
 
 ```shell
 $ ./make
 ```
 
-Questo è un estratto di risultato che si dovrebbe ottenere eseguendo il comando spark-submit
+Questo è un estratto di risultato che si dovrebbe ottenere eseguendo il comando di cui sopra
 ```
 
 [...]
@@ -63,9 +64,9 @@ OK! :)
 
 ++++++++ RISULTATI ++++++++++
 Identificati: 555 su 612
-Accuratezza: 90.68627450980392%
-Precisione: 9.090909090909092
-Richiamo: 5.128205128205128
+Accuratezza: 90.68%
+Precisione: 9.09
+Richiamo: 5.12
 
 grazie per aver usato Sentiplus.
 

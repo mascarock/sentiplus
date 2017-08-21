@@ -1,5 +1,6 @@
 *.class
 *.log
+*.zip
 
 # For Hive
 TempStatsStore/

@@ -205,9 +205,8 @@ object SentiClassifier {
     println("${Console.GREEN} ++++++++ RISULTATI ++++++++++")
 
     println("Identificati: " + (tp + tn) + " su " + riga)
-    println("> test Set Negativo: " + getNegX()*100 + "% valore: " + getTestNeg() + " su: " + dataNeg)
-    println("> test Set Positivo: " + getPosX()*100 + "% valore: " + getTestPos() + " su: " + dataPos)
-
+    println("> Train Set Negativo: " + getNegX()*100 + "% totale: " + getTestNeg() + " su: " + dataNeg)
+    println("> Train Set Positivo: " + getPosX()*100 + "% valore: " + getTestPos() + " su: " + dataPos)
     println("Accuratezza: " + accuracy + "%")
     println("Precisione: " + precision)
     println("Richiamo: " + recall)
