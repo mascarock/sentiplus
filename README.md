@@ -50,7 +50,6 @@ $ spark-submit --class app.SentiPlus --master local[2] Sentiplus-#VERSION#-SNAPS
 
 ```
 
-
 Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il sorgente tramite un IDE che supporta Maven, eseguire lo script make dalla cartella sentiplus.
 
 ```shell
@@ -62,10 +61,9 @@ $ ./make
 Questo comando utilizza il dataset "1" riguardante il topic "politica2015"
 ```shell
 $ cd target
-$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-#VERSION#-SNAPSHOT.jar 1 
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-6.5-SNAPSHOT.jar 1 
 ```
-si otterrà:
-
+ottenendo:
 
 ```
 
@@ -82,10 +80,27 @@ grazie per aver usato Sentiplus.
 
 ```
 
-Questo comando utilizza il dataset "2" riguardante il topic "politica2015"
+Questo comando utilizza il dataset "2" [TSAT](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
+
+```shell
+$ cd target
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-6.5-SNAPSHOT.jar 2 9600
+```
+ottenendo:
+
+```
+[...]
+
+Identificati: 2269 su 3077
+> Train Set Negativo: 57.18531468531468% totale: 3271.0 su: 5720.0
+> Train Set Positivo: 83.81026037638567% valore: 3251.0 su: 3879.0
+Accuratezza: 73.741%
+Precisione: 23.214
+Richiamo: 12.42
 
 
-
+grazie per aver usato Sentiplus.
+```
 
 ---
 
