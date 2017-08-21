@@ -1,7 +1,9 @@
 # Sentiplus
 Un classificatore per individuare il sentimento dei tweet
 
-L'obiettivo di Sentiplus è indidivudare il sentimento di un dataset di tweet strutturato come segue:
+L'obiettivo di Sentiplus è indidivudare il sentimento di un dataset di tweets già etichettato strutturato in modo che sia facilmente estraibile il valore numerico che identifica il sentimento e la stringa che rappresenta il tweet da analizzare. 
+
+Ad esempio:
 
 > 0.0|#Marino si e' dimessoooo??? Non ci credo!!!   #MAFIACAPITALE  #Romaliberata
 
@@ -14,11 +16,23 @@ Valore numerico | Sentimento
 
 La stringa che segue il carattere \"|\" rappresenta il tweet da analizzare.
 
+
+
 ## Funzionamento
 
 Il funzionamento del classificatore prevede l'utilizzo di un algoritmo di classificazione denominato L-BFG
 
 I dovuti approfondimenti saranno discussi nella tesi di laurea associata al progetto.
+
+## Configurazione
+
+Il file [config.sp](https://github.com/mascarock/sentiplus/blob/master/target/data/config.sp) contiene tre righe, che rappresentano
+
+Riga| Significato
+------------ | -------------
+1 | Random Seed per i tweet positivi
+2 | Random Seed per i tweet negativi
+3 | Numero di Features
 
 
 ## Esecuzione
