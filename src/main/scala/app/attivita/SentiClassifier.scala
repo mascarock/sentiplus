@@ -1,29 +1,48 @@
 package app.attivita
 import org.apache.spark.rdd.RDD
+import org.apache.spark.mllib.feature.HashingTF
+import org.apache.spark.mllib.classification.LogisticRegressionWithLBFGS
+import org.apache.spark.mllib.regression.LabeledPoint
+
+
+/**
+  * SentiClassifier
+  * Classifica il testo utilizzando una regressione logistica
+  * sfruttando l'algoritmo LBFGS
+  *
+  */
+
 
 object SentiClassifier {
 
-  import org.apache.spark.mllib.feature.HashingTF
-  import org.apache.spark.mllib.classification.LogisticRegressionWithLBFGS
-  import org.apache.spark.mllib.regression.LabeledPoint
-
-  /**
-    * Classe SentiClassifier
-    * Classifica il testo utilizzando una regressione logistica
-    * sfruttando l'algoritmo LBFGS
-    *
-    */
-
   // parametri per valutare metriche
 
-  var tp = 0 // true positive
-  var tn = 0 // true negative
-  var fp = 0 // false positive
-  var fn = 0 // false negative
-  var index = 0
-  var riga = 0
-  var azzeccati = 0
+  private var tp = 0 // true positive
+  private var tn = 0 // true negative
+  private var fp = 0 // false positive
+  private var fn = 0 // false negative
+  private var index = 0
+  private var riga = 0
+  private var azzeccati = 0
 
+  private var negX = 0.0
+  private var posX = 0.0
+
+  private var dataPos = 0.0
+  private var dataNeg = 0.0
+
+  private var testPos = 0.0
+  private var testNeg = 0.0
+
+  var kpos = 0.0
+  var kneg = 0.0
+
+    /** calcolo della percentuale
+      * per avere un bilanciamento
+      * tra dati positivi e dati negativi
+      * nel caso di dataset non bilanciati
+      *
+      */
 
   /** Valuta per ogni array di stringhe positive e negative il sentimento espresso
     * @param posTweets un RDD di Stringhe positive
@@ -34,21 +53,32 @@ object SentiClassifier {
 
   def classifica(posTweets: RDD[String], negTweets: RDD[String], __SEED:Long, __SEEB:Long, __FEATURES:Int) {
 
-    val dataPos = posTweets.count().toDouble
-    val dataNeg = negTweets.count().toDouble
+    dataPos = posTweets.count().toDouble
+    dataNeg = negTweets.count().toDouble
 
-    /** calcolo della percentuale
-      * per avere un bilanciamento
-      * tra dati positivi e dati negativi
-      * nel caso di dataset non bilanciati
-      */
 
-    val negX = BigDecimal((dataPos / (dataNeg + dataPos))).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
-    val posX = BigDecimal(1 - negX).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+    /*
+    OLD: queste due righe servono per bilanciare un dataset 50 train e 50 test
+    negX = BigDecimal((dataPos / (dataNeg + dataPos))).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+    posX = BigDecimal(1 - negX).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+    */
 
-    // insieme di tweet positivi e negativi
-    val posSplits = posTweets.randomSplit(Array(posX, negX), __SEED)
-    val negSplits = negTweets.randomSplit(Array(negX, posX), __SEEB)
+    // ottimali per CSV
+    // 80 20
+    // 60 40
+    // insieme di tweet positivi e negativi posX, negX
+
+    bilancia(dataPos.toInt,dataNeg.toInt)
+
+    val posSplits = posTweets.randomSplit(Array(kpos,1-kpos), __SEED)
+    val negSplits = negTweets.randomSplit(Array(kneg,1-kneg), __SEEB)
+
+    negX = negSplits(0).count() / dataNeg
+    posX = posSplits(0).count() / dataPos
+
+    testPos = posSplits(0).count()
+    testNeg = negSplits(0).count()
+
 
     val tf = new HashingTF(numFeatures = __FEATURES)
 
@@ -109,22 +139,25 @@ object SentiClassifier {
     for (twt <- testerPositive) {
 
       val singleTweet = tf.transform(twt)
+
+      /*
       println(" tweet in esame: " + twt)
       println(s"Previsione: ${model.predict(singleTweet).toFloat}")
       println("Etichetta: 1 ")
+      */
 
       if (model.predict(singleTweet).toInt == 1) {
         azzeccati += 1
-        println("OK! :) ")
+        //println("OK! :) ")
         tp += 1
       }
 
       else {
-        println("NO :(")
+        //println("NO :(")
         fn += 1
       }
 
-      riga += 1;
+      riga += 1
     }
 
 
@@ -135,18 +168,21 @@ object SentiClassifier {
 
     for (twt <- testerNegative) {
       val singleTweet = tf.transform(twt)
+
+      /*
       println("\nTweet in esame: " + twt)
       println(s"> Previsione:  ${model.predict(singleTweet).toFloat}")
       println("> Etichetta: 0 ")
+      */
 
       if (model.predict(singleTweet).toInt == 0) {
         azzeccati += 1
-        println("OK! :) ")
+        //println("OK! :) ")
         tn += 1
       }
 
       else {
-        println("NO :( ")
+        //println("NO :( ")
         fp += 1
       }
       riga += 1
@@ -170,14 +206,73 @@ object SentiClassifier {
     println("${Console.GREEN} ++++++++ RISULTATI ++++++++++")
 
     println("Identificati: " + (tp + tn) + " su " + riga)
+    println("> test Set Negativo: " + getNegX()*100 + "% valore: " + getTestNeg() + " su: " + dataNeg)
+    println("> test Set Positivo: " + getPosX()*100 + "% valore: " + getTestPos() + " su: " + dataPos)
+
     println("Accuratezza: " + accuracy + "%")
     println("Precisione: " + precision)
     println("Richiamo: " + recall)
 
     println("\ngrazie per aver usato Sentiplus. ")
 
+  }
+
+  def bilancia(pos: Integer, neg: Integer) = {
+
+    var testerPos = 0.0
+    var testerNeg = 0.0
+
+    if (pos <= neg) {
+      kpos = valutak(pos,neg)
+      testerPos = kpos*pos
+      kneg = (testerPos / neg)
+      testerNeg = testerPos
+    }
+
+    if (pos > neg) {
+      kneg = valutak(pos,neg)
+      testerNeg = kneg*neg
+      kpos = (testerNeg / pos)
+      testerPos = testerNeg
+    }
 
   }
+
+  def valutak(pos: Integer, neg: Integer) : Double = {
+
+    val tester = math.min(pos,neg)
+    var k = 1.0
+    var z = 0.99
+
+    while (k > 0.85) {
+
+      k = ( z * (pos + neg) ) / ( 2 * tester )
+      z = z - 0.01
+
+    }
+
+    return k
+
+  }
+
+  def getNegX() : Double = {
+    return  negX
+  }
+
+  def getPosX(): Double = {
+    return posX
+  }
+
+  def getTestPos() : Double = {
+    return testPos
+  }
+
+
+  def getTestNeg() : Double = {
+    return testNeg
+  }
+
+
 
 
 

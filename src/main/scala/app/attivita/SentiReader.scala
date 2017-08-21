@@ -9,6 +9,13 @@ import scala.collection.mutable.ArrayBuffer
 
 object SentiReader {
 
+  val __SENTINEG = 0
+  val __SENTIPOS = 1
+
+  // pattern per pulire il tweet
+  val cleaner = "&(.+;)|http|\\\"|\\,|\\+|\\'|…|\\/|\\>|\\?|\\[|\\]|\\-|\\(|\\)|\\W+…|&gt;|RT|\\.|!|“|”|->|\\#|:|@\\w+\\S+|\\\\\"|\\\\\" ".r
+  val url = "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+
   private var posTweets = new ArrayBuffer[String]()
   private var negTweets = new ArrayBuffer[String]()
 
@@ -28,10 +35,6 @@ object SentiReader {
     // tweetPattern identifica il tweet
     val tweetPattern = "\\|(.+)".r
 
-    // pattern per pulire il tweet
-    val cleaner = "http|\\\"|\\,|\\+|\\'|…|\\/|\\>|\\?|\\[|\\]|\\-|\\(|\\)|\\W+…|&gt;|RT|\\.|!|“|”|->|\\#|:|@\\w+\\S+|\\\\\"|\\\\\" ".r
-    val url = "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
-
     // lettura e pulizia
     for (tweet <- tweets) {
 
@@ -41,23 +44,61 @@ object SentiReader {
 
       // pulizia tweet
       val fixed = currTweet.replaceAll(url,"")
-      val fixedTweet = cleaner.replaceAllIn(fixed," ").toLowerCase
+      val fixedTweet = cleaner.replaceAllIn(fixed," ").replaceAll("\\s+", " ").toLowerCase
 
       // DEBUG println("S: " + currRes + " T: " + currTweet)
 
-      if (currRes == 0) {
+      if (currRes == __SENTINEG) {
         negTweets += fixedTweet
       }
 
-      if (currRes == 1) {
+      if (currRes == __SENTIPOS) {
         posTweets += fixedTweet
       }
+    }
+  }
 
+  /* legge il file csv */
+
+  def leggiCSV(tweets: Array[String]): Unit = {
+    val pattern = "(.+),(.),([a-zA-Z0-9]+),(.+)".r
+    var grezzo = ""
+    var sentiment = 0
+    var id = ""
+
+    for (tweet <- tweets) {
+
+      tweet match {
+        case pattern(a, b, c, d) => (id = a, sentiment = b toInt, c , grezzo = d )
+      }
+
+      /* DEBUG
+
+      println("ID: " + id)
+      println("Sentiment: " + sentiment)
+      println("Tweet: " + grezzo)
+
+      */
+
+      val fixed = grezzo.replaceAll(url,"")
+      val fixedTweet = cleaner.replaceAllIn(fixed," ").replaceAll("\\s+", " ").toLowerCase
+
+      // println("Pulito: " + fixedTweet)
+
+      if (sentiment == __SENTINEG) {
+        negTweets += fixedTweet
+
+      }
+
+      if (sentiment == __SENTIPOS) {
+        posTweets += fixedTweet
+      }
     }
 
   }
 
-  /** ottiene l'insieme di tweet identificati come positivi
+
+    /** ottiene l'insieme di tweet identificati come positivi
     * @return posTweets, un array di stringhe di tweet puliti
     *
     *
