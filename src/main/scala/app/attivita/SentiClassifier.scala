@@ -12,7 +12,6 @@ import org.apache.spark.mllib.regression.LabeledPoint
   *
   */
 
-
 object SentiClassifier {
 
   // parametri per valutare metriche
@@ -34,8 +33,8 @@ object SentiClassifier {
   private var testPos = 0.0
   private var testNeg = 0.0
 
-  var kpos = 0.0
-  var kneg = 0.0
+  private var kpos = 0.0
+  private var kneg = 0.0
 
     /** calcolo della percentuale
       * per avere un bilanciamento
@@ -198,9 +197,9 @@ object SentiClassifier {
 
   def risultato(): Unit = {
 
-    val accuracy = (tp + tn) / riga.toDouble * 100
-    val precision = tp / (tp + fp).toDouble * 100
-    val recall = tp / (tp + fn).toDouble * 100
+    val accuracy = BigDecimal(( (tp + tn) / riga.toDouble * 100 )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+    val precision = BigDecimal(( tp / (tp + fp).toDouble * 100 )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+    val recall = BigDecimal(( tp / (tp + fn).toDouble * 100 )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
 
 
     println("${Console.GREEN} ++++++++ RISULTATI ++++++++++")
