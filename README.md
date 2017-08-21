@@ -80,7 +80,7 @@ grazie per aver usato Sentiplus.
 
 ```
 
-Questo comando utilizza il dataset "2" [TSAT](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
+Questo comando utilizza il dataset "2" [Twitter Sentiment Analysis Corpus](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
 
 ```shell
 $ cd target
