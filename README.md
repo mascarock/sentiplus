@@ -56,7 +56,7 @@ Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il so
 $ ./make
 ```
 
-### Esempio di esecuzione 
+#### Esempi di esecuzione 
 
 Questo comando utilizza il dataset "1" riguardante il topic "politica2015"
 ```shell
