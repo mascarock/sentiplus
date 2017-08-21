@@ -29,7 +29,7 @@ Se si vuole lanciare Sentiplus compilato, eseguire i seguenti comandi, all'inter
 
 ```shell
 $ cd target
-$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-#VERSION-SNAPSHOT.jar 1 
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-#VERSION#-SNAPSHOT.jar 1 
 
 ```
 
