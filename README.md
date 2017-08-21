@@ -56,7 +56,7 @@ Se si vuole compilare ed eseguire in autonomia dopo aver modificato o meno il so
 $ ./make
 ```
 
-#### Esempi di esecuzione 
+#### Dataset "Politica 2015"
 
 Questo comando utilizza il dataset "1" riguardante il topic "politica2015"
 ```shell
@@ -79,6 +79,7 @@ grazie per aver usato Sentiplus.
 
 
 ```
+#### Dataset "Twitter Sentiment Analysis Corpus"
 
 Questo comando utilizza il dataset "2" [Twitter Sentiment Analysis Corpus](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
 
