@@ -1,12 +1,4 @@
 # Sentiplus
-
-   ____         __  _      __       
-  / __/__ ___  / /_(_)__  / /_ _____
- _\ \/ -_) _ \/ __/ / _ \/ / // (_-<
-/___/\__/_//_/\__/_/ .__/_/\_,_/___/
-                  /_/               
-
-
 Un classificatore per individuare il sentimento dei tweet
 
 L'obiettivo di Sentiplus è indidivudare il sentimento di un dataset di tweet strutturato come segue:
