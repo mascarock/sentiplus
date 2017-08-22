@@ -101,7 +101,7 @@ Identificati: 440 su 594
 #### Dataset "Twitter Sentiment Analysis Corpus"
 
 Questo comando utilizza una versione ridotta del dadaset "2" [Twitter Sentiment Analysis Corpus](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
-e processa 120 milioni di tweet.
+e processa più di un milione di tweet
 
 ```shell
 $ cd target
