@@ -34,7 +34,6 @@ object SentiPlus {
       println("l'app Sentiplus funziona su due dataset: ITA (1) e ENG (2)\n ")
       println("Utilizzare $SentiPlus 1 per il primo dataset, $ SentiPlus 2 altrimenti")
       sc.stop()
-
     }
 
 
@@ -51,7 +50,7 @@ object SentiPlus {
 
       else if (args.length > 1 && args(0).toInt == 2) {
 
-        val file_input = sc.textFile("data/dataset.csv")
+        val file_input = sc.textFile("data/dataset1m.csv")
         val header = file_input.first()
 
         if (args(1).toInt > _MAXINPUT) {
@@ -61,7 +60,6 @@ object SentiPlus {
         } else {
 
           val totLines = args(1).toInt
-
           /* salta la prima linea che costituisce l'header */
           val tweets = file_input.take(totLines+1).filter(row => row != header)
           SentiReader.leggiCSV(tweets)

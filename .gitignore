@@ -1,5 +1,6 @@
 *.log
 *.zip
+dataset1m.csv
 
 # For Hive
 TempStatsStore/

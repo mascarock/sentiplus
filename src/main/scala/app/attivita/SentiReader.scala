@@ -61,15 +61,16 @@ object SentiReader {
   /* legge il file csv */
 
   def leggiCSV(tweets: Array[String]): Unit = {
-    val pattern = "(.+),(.),([a-zA-Z0-9]+),(.+)".r
+    val pattern = "([0-9]+),(.),([a-zA-Z0-9]+),(.+)".r
     var grezzo = ""
     var sentiment = 0
     var id = ""
+    var code = 1
 
     for (tweet <- tweets) {
 
-      tweet match {
-        case pattern(a, b, c, d) => (id = a, sentiment = b.toInt, c , grezzo = d )
+       tweet match {
+       case pattern(a, b, c, d) => (id = a, sentiment = b.toInt, c , grezzo = d )
       }
 
       /* DEBUG
