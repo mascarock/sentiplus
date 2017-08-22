@@ -59,6 +59,7 @@ $ ./make
 #### Dataset "Politica 2015"
 
 Questo comando utilizza il dataset "1" riguardante il topic "politica2015"
+
 ```shell
 $ cd target
 $ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 1 
@@ -66,93 +67,98 @@ $ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 1
 ottenendo:
 
 ```
-
 [...]
-
-Tweet in esame:  chiocci alemanno mi chiese di incontrare buzzi mafiacapitale si arricchisce ogni giorno di pi 
-> Previsione:  0.0
-> Etichetta: 0 
-OK! :) 
-
-Tweet in esame:  piazzapulita i candidati alla successione di marino stanno gi pensando alle strategie alternative per rifare un altra mafiacapitale
-> Previsione:  0.0
-> Etichetta: 0 
-OK! :) 
 
 Tweet in esame:  pansa vi spiego xch renzi salva marino e xch la pagher cara sfacelo & drammadi mafiacapitale e dintorni 
 > Previsione:  0.0
 > Etichetta: 0 
 OK! :) 
 
+Area sotto la curva PR = 18.482% 
+Area sotto la curva ROC = 78.409%
 
 ++++++++ RISULTATI ++++++++++
 Sono stati processati 890 tweet, così divisi
 > Valore positivo: 180
 > Valore negativo: 710
 
-L'insieme train è costituito da: 315 tweet, così diviso: 
-> Train Set Negativo: 21.31% totale: 151 su: 710
-> Train Set Positivo: 84.056% totale: 164 su: 180
+L'insieme train è costituito da 296 tweet, così diviso: 
+> Train Set Negativo: 21.31% totale: 150 su: 710
+> Train Set Positivo: 84.056% totale: 146 su: 180
 
-L'insieme test è costituito da: 575 così diviso: 
-> Test Set Negativo: 78.69% totale: 559 su: 710
-> Test Set Positivo: 15.944% totale: 16 su: 180
+L'insieme test è costituito da 594 tweet così diviso: 
+> Test Set Negativo: 78.69% totale: 560 su: 710
+> Test Set Positivo: 15.944% totale: 34 su: 180
 
-Identificati: 489 su 575
-> Accuratezza: 85.043%
-> Precisione: 1.389
-> Richiamo: 6.25
-.
+Identificati: 440 su 594
+> Accuratezza: 74.074%
+> Precisione: 14.286
+> Richiamo: 70.588
+
 
 
 ```
 #### Dataset "Twitter Sentiment Analysis Corpus"
 
-Questo comando utilizza il dataset "2" [Twitter Sentiment Analysis Corpus](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
+Questo comando utilizza una versione ridotta del dadaset "2" [Twitter Sentiment Analysis Corpus](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
+e processa 120 milioni di tweet.
 
 ```shell
 $ cd target
-$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 2 8500
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 2 12000000
 ```
 ottenendo:
 
 ```
 [...]
 
-Tweet in esame:  yancey replaced me p s i m going all in now it s now or never 
+Tweet in esame:  slumdog millionaire is a decent flick hadn t seen it till tonight i m just home and prob wont sleep tiil the early hours boo 
 > Previsione:  0.0
 > Etichetta: 0 
 OK! :) 
 
-Tweet in esame:  fwah big d s was closed when we went there just now pftttttt ima go to bed now gonna wake up in 6hrs time 
-> Previsione:  0.0
-> Etichetta: 0 
-OK! :) 
-
-Tweet in esame:  i drank milk so now im so sick seriously 
+Tweet in esame: smart bro is breaking my heart 
 > Previsione:  1.0
 > Etichetta: 0 
 NO :( 
 
+Tweet in esame:  smh im sick with this bug that s going around almost everyone i know is sick including me 
+> Previsione:  0.0
+> Etichetta: 0 
+OK! :) 
+
+Area sotto la curva PR = 83.321% 
+Area sotto la curva ROC = 81.625%
+
 ++++++++ RISULTATI ++++++++++
-Sono stati processati 8500 tweet, così divisi
-> Valore positivo: 3260
-> Valore negativo: 5240
+Sono stati processati 1200000 tweet, così divisi
+> Valore positivo: 622841
+> Valore negativo: 577159
 
-L'insieme train è costituito da: 5545 tweet, così diviso: 
-> Train Set Negativo: 52.719% totale: 2796 su: 5240
-> Train Set Positivo: 84.739% totale: 2749 su: 3260
+L'insieme train è costituito da 972350 tweet, così diviso: 
+> Train Set Negativo: 84.206% totale: 486154 su: 577159
+> Train Set Positivo: 78.03% totale: 486196 su: 622841
 
-L'insieme test è costituito da: 2955 così diviso: 
-> Test Set Negativo: 47.281% totale: 2444 su: 5240
-> Test Set Positivo: 15.261% totale: 511 su: 3260
+L'insieme test è costituito da 227650 tweet così diviso: 
+> Test Set Negativo: 15.794% totale: 91005 su: 577159
+> Test Set Positivo: 21.97% totale: 136645 su: 622841
 
-Identificati: 2299 su 2955
-> Accuratezza: 77.8%
-> Precisione: 19.665
-> Richiamo: 9.198
+Identificati: 174625 su 227650
+> Accuratezza: 76.708%
+> Precisione: 82.902
+> Richiamo: 77.095
+
 
 ```
+
+Per analizzare più tweet, se la macchina possiede sufficiente memoria, è possibile scaricare il dataset completo
+
+```shell
+$ wget http://thinknook.com/wp-content/uploads/2012/09/Sentiment-Analysis-Dataset.zip
+```
+
+scompattarlo nella cartella /data/ dandogli il nome "dataset.csv"
+
 
 ---
 
