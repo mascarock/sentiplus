@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8e93121f-2dc0-4579-a11b-f9f365faee60" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/run" afterPath="$PROJECT_DIR$/target/run" />
     </list>
     <ignored path="Sentiplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SentiClassifier.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SentiClassifier.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="232" column="3" selection-start-line="232" selection-start-column="3" selection-end-line="234" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.37417942">
+              <caret line="204" column="36" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
               <folding>
                 <element signature="e#22#58#0" expanded="true" />
               </folding>
@@ -50,11 +51,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DebugSentiClassifier.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="run" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/run">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.2258065">
+              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DebugSentiClassifier.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58566976">
-              <caret line="227" column="39" selection-start-line="227" selection-start-column="39" selection-end-line="227" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="177" column="51" selection-start-line="177" selection-start-column="40" selection-end-line="177" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -101,15 +122,16 @@
         <option value="$PROJECT_DIR$/src/main/scala/app/attivita/Solver.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/attivita/Classifier.scala" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/target/run" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/target/data/config.sp" />
         <option value="$PROJECT_DIR$/src/main/scala/app/SentiPlus.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/attivita/SentiReader.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/DebugSentiPlus.scala" />
         <option value="$PROJECT_DIR$/data/config.sp" />
         <option value="$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala" />
+        <option value="$PROJECT_DIR$/target/run" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" />
       </list>
     </option>
   </component>
@@ -342,7 +364,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DebugSentiPlus">
+  <component name="RunManager" selected="Application.SentiPlus">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -827,7 +849,13 @@
       <option name="project" value="LOCAL" />
       <updated>1503435782670</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fixed bug with Spark &gt; 2.0">
+      <created>1503436581311</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1503436581311</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -851,7 +879,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988003" sideWeight="0.49893048" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56270444" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27099237" sideWeight="0.49893048" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4727372" sideWeight="0.49893048" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24839573" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988003" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -885,7 +913,8 @@
     <MESSAGE value="esecuzione da linea di comando" />
     <MESSAGE value="aggiunte metriche e fix" />
     <MESSAGE value="debugging Hashing TF" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugging Hashing TF" />
+    <MESSAGE value="fixed bug with Spark &gt; 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with Spark &gt; 2.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -905,16 +934,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/scala/app/SentiPlus.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="33" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
-          <folding>
-            <element signature="e#13#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1246,14 +1265,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="72" selection-start-line="0" selection-start-column="72" selection-end-line="0" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MarkdownFxPreviewEditor">
         <state />
@@ -1331,21 +1342,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="232" column="3" selection-start-line="232" selection-start-column="3" selection-end-line="234" selection-end-column="39" />
-          <folding>
-            <element signature="e#22#58#0" expanded="true" />
-          </folding>
+          <caret line="177" column="51" selection-start-line="177" selection-start-column="40" selection-end-line="177" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala">
+    <entry file="file://$PROJECT_DIR$/target/run">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58566976">
-          <caret line="227" column="39" selection-start-line="227" selection-start-column="39" selection-end-line="227" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2258065">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37417942">
+          <caret line="204" column="36" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
+          <folding>
+            <element signature="e#22#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
