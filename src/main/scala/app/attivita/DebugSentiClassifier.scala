@@ -146,6 +146,57 @@ object DebugSentiClassifier {
     println("\nArea sotto la curva P-R = " + arrotonda(auPRC*100) + "% ")
     println("Area sotto la curva ROC = " + arrotonda(auROC*100) + "%" )
 
+    for (twt <- testerPositive) {
+
+      val singleTweet = tf.transform(twt.split(" "))
+
+
+      println(" tweet in esame: " + twt)
+      println(s"Previsione: ${model.predict(singleTweet)}")
+      println("Etichetta: 1 ")
+
+
+      if (model.predict(singleTweet).toInt == 1) {
+        azzeccati += 1
+        println("OK! :) ")
+        tp += 1
+      }
+
+      else {
+        println("NO :(")
+        fn += 1
+      }
+
+      riga += 1
+    }
+
+
+    /* valuta il modello sui tweet negativi */
+
+
+    for (twt <- testerNegative) {
+      val singleTweet = tf.transform(twt.split(" "))
+
+
+      println("\nTweet in esame: " + twt)
+      println(s"> Previsione:  ${model.predict(singleTweet)}")
+      println("> Etichetta: 0 ")
+
+
+      if (model.predict(singleTweet).toInt == 0) {
+        azzeccati += 1
+        println("OK! :) ")
+        tn += 1
+      }
+
+      else {
+        println("NO :( ")
+        fp += 1
+      }
+      riga += 1
+
+    }
+
 
   }
 
@@ -172,6 +223,9 @@ object DebugSentiClassifier {
     println("> Test Set Positivo: " + arrotonda(percTestPos) + "% totale: " + getTestPos + " su: " + dataPos)
 
     println("\nIdentificati: " + (tp + tn) + " su " + riga)
+    println("> Accuratezza: " + getAccuracy + "%")
+    println("> Precisione: " + getPrecision )
+    println("> Richiamo: " + getRecall)
 
 
     println("\nGrazie per aver usato Sentiplus. ")
