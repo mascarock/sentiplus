@@ -116,7 +116,7 @@ object SentiClassifier {
     /* valuta il modello sui tweet positivi */
     for (twt <- testerPositive) {
 
-      val singleTweet = tf.transform(twt)
+      val singleTweet = tf.transform(twt.split(" "))
 
 
       println(" tweet in esame: " + twt)
@@ -143,7 +143,7 @@ object SentiClassifier {
 
 
     for (twt <- testerNegative) {
-      val singleTweet = tf.transform(twt)
+      val singleTweet = tf.transform(twt.split(" "))
 
 
       println("\nTweet in esame: " + twt)
