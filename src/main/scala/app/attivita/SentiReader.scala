@@ -69,7 +69,7 @@ object SentiReader {
     for (tweet <- tweets) {
 
       tweet match {
-        case pattern(a, b, c, d) => (id = a, sentiment = b toInt, c , grezzo = d )
+        case pattern(a, b, c, d) => (id = a, sentiment = b.toInt, c , grezzo = d )
       }
 
       /* DEBUG
@@ -104,9 +104,7 @@ object SentiReader {
     *
     */
 
-  def getPosTweets : ArrayBuffer[String] = {
-    return posTweets
-  }
+  def getPosTweets : ArrayBuffer[String] = posTweets
 
   /** ottiene l'insieme di tweet identificati come negativi
     * @return negTweets, un array di stringhe di tweet puliti
@@ -114,10 +112,7 @@ object SentiReader {
     *
     */
 
-  def getNegTweets : ArrayBuffer[String] = {
-    return negTweets
-  }
-
+  def getNegTweets : ArrayBuffer[String] = negTweets
 
 
 

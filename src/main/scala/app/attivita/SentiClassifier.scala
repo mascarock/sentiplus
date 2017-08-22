@@ -1,4 +1,8 @@
 package app.attivita
+
+import org.apache.spark.SparkContext
+import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
+import org.apache.spark.mllib.util.MLUtils
 import org.apache.spark.rdd.RDD
 import org.apache.spark.mllib.feature.HashingTF
 import org.apache.spark.mllib.classification.LogisticRegressionWithLBFGS
@@ -35,7 +39,9 @@ object SentiClassifier {
   private var kpos = 0.0
   private var kneg = 0.0
 
+
   /** Valuta per ogni array di stringhe positive e negative il sentimento espresso
+    *
     * @param posTweets un RDD di Stringhe positive
     * @param  negTweets  un RDD di stringhe negative
     * @param __FEATURES numero di features
@@ -69,6 +75,7 @@ object SentiClassifier {
     // Ogni tweet è diviso in parole, e ogni parola è mappata ad una feature
     // le features vengono valutate per l'insieme di test, calcolato prendendo
     // la prima parte dei tweet negativi e la prima parte dei tweet positivi.
+
     val posFeatures = posSplits(0).map(text => tf.transform(text.split(" ")))
     val negFeatures = negSplits(0).map(text => tf.transform(text.split(" ")))
 
@@ -85,15 +92,6 @@ object SentiClassifier {
 
     // Usa l'algoritmo per addestrare il modello
     val model = lrLearner.run(trainingData)
-
-    // Effetta un test per un esempio positivo e un esempio negativo
-    // utilizzando la stessa trasformazione in feature HashingTF usata sul dataset di test
-    val posTestExample = tf.transform("sostiene marino abbiamo tolto il male da roma dimarted".split(" "))
-    val negTestExample = tf.transform("mafiacapitale  ormai siamo alla frutta".split(" "))
-
-    // Ora utilizza il modello allenato su nuovi esempi sconosciuti al modello stesso
-    println(s"Previsione per un esempio POSITIVO: ${model.predict(posTestExample)}")
-    println(s"Previsione per un esempio NEGATIVO: ${model.predict(negTestExample)}")
 
     /* testa il sistema sulla seconda parte del dataset, non utilizzato in fase di apprendimento */
 
@@ -166,33 +164,75 @@ object SentiClassifier {
       riga += 1
 
     }
+
+
+    /* calcola metriche per valutarle */
+
+    val posTestFeatures = posSplits(1).map(text => tf.transform(text.split(" ")))
+    val negTestFeatures = negSplits(1).map(text => tf.transform(text.split(" ")))
+
+    val positiveTest = posTestFeatures.map(features => LabeledPoint(1, features))
+    val negativeTest = negTestFeatures.map(features => LabeledPoint(0, features))
+
+    val testerData = positiveTest ++ negativeTest
+    testerData.cache()
+
+    // Elimina la soglia così che il modello ritornerà le probabilità
+    model.clearThreshold
+
+    // Calcola i risultati grezzi sul test set
+    val predictionAndLabels = testerData.map { case LabeledPoint(label, features) =>
+      val prediction = model.predict(features)
+      (prediction, label)
+    }
+
+    val metrics = new BinaryClassificationMetrics(predictionAndLabels)
+
+    // Precision-Recall Curve
+    val PRC = metrics.pr
+
+    // AUPRC
+    val auPRC = metrics.areaUnderPR
+
+
+    // ROC Curve
+    val roc = metrics.roc
+
+    // AUROC
+    val auROC = metrics.areaUnderROC
+
+
+    println("\nArea under precision-recall curve = " + auPRC)
+    println("Area under ROC = " + auROC)
+
+
   }
+
 
   /** Descrivi i risultati ottenuti
     * stampando su schermo
-    * @return void
     */
 
   def risultato(): Unit = {
 
-    println("++++++++ RISULTATI ++++++++++")
+    println("\n++++++++ RISULTATI ++++++++++")
 
     println("Sono stati processati " + (dataNeg + dataPos) + " tweet, così divisi")
     println("> Valore positivo: " + dataPos)
     println("> Valore negativo: " + dataNeg)
 
-    println("\nL'insieme train è costituito da: " + (getTrainPos() + getTrainNeg()) + " tweet, così diviso: ")
-    println("> Train Set Negativo: " + percTrainNeg() + "% totale: " + getTrainNeg() + " su: " + dataNeg)
-    println("> Train Set Positivo: " + percTrainPos() + "% totale: " + getTrainPos() + " su: " + dataPos)
+    println("\nL'insieme train è costituito da: " + (getTrainPos + getTrainNeg) + " tweet, così diviso: ")
+    println("> Train Set Negativo: " + percTrainNeg+ "% totale: " + getTrainNeg + " su: " + dataNeg)
+    println("> Train Set Positivo: " + percTrainPos+ "% totale: " + getTrainPos + " su: " + dataPos)
 
-    println("\nL'insieme test è costituito da: " + (getTestPos() + getTestNeg()) + " così diviso: ")
-    println("> Test Set Negativo: " + arrotonda(percTestNeg()) + "% totale: " + getTestNeg() + " su: " + dataNeg)
-    println("> Test Set Positivo: " + arrotonda(percTestPos()) + "% totale: " + getTestPos() + " su: " + dataPos)
+    println("\nL'insieme test è costituito da: " + (getTestPos + getTestNeg) + " così diviso: ")
+    println("> Test Set Negativo: " + arrotonda(percTestNeg) + "% totale: " + getTestNeg + " su: " + dataNeg)
+    println("> Test Set Positivo: " + arrotonda(percTestPos) + "% totale: " + getTestPos + " su: " + dataPos)
 
     println("\nIdentificati: " + (tp + tn) + " su " + riga)
-    println("> Accuratezza: " + getAccuracy() + "%")
-    println("> Precisione: " + getPrecision() )
-    println("> Richiamo: " + getRecall())
+    println("> Accuratezza: " + getAccuracy + "%")
+    println("> Precisione: " + getPrecision )
+    println("> Richiamo: " + getRecall)
 
     println("\nGrazie per aver usato Sentiplus. ")
 
@@ -201,6 +241,7 @@ object SentiClassifier {
 
   /** Descrivi i risultati ottenuti
     * stampando su schermo
+ *
     * @param pos un intero che rappresenta tweet positivi
     * @param neg un intero che rappresenta tweet negativi
     */
@@ -215,21 +256,20 @@ object SentiClassifier {
 
    */
 
-
     var testerPos = 0.0
     var testerNeg = 0.0
 
     if (pos <= neg) {
       kpos = valutak(pos,neg)
       testerPos = kpos*pos
-      kneg = (testerPos / neg)
+      kneg = testerPos / neg
       testerNeg = testerPos
     }
 
     if (pos > neg) {
       kneg = valutak(pos,neg)
       testerNeg = kneg*neg
-      kpos = (testerNeg / pos)
+      kpos = testerNeg / pos
       testerPos = testerNeg
     }
 
@@ -242,64 +282,27 @@ object SentiClassifier {
     var z = 0.99
 
     while (k > 0.85) {
-
       k = ( z * (pos + neg) ) / ( 2 * tester )
       z = z - 0.01
-
     }
 
-    return k
+    k
 
   }
 
-  private def percTrainPos() : Double = {
-    return arrotonda(kpos*100)
-  }
-
-  private def percTrainNeg(): Double = {
-    return arrotonda(kneg*100)
-  }
-
-  private def percTestPos() : Double = {
-    return arrotonda(100-kpos*100)
-  }
-
-  private def percTestNeg(): Double = {
-    return arrotonda(100-kneg*100)
-  }
-
-  private def getTrainPos() : Int = {
-    return trainPos.toInt
-  }
-
-  private def getTrainNeg() : Int = {
-    return trainNeg.toInt
-  }
-
-  private def getTestPos() : Int = {
-    return dataPos - getTrainPos()
-  }
-
-  private def getTestNeg() : Int = {
-    return dataNeg - getTrainNeg()
-  }
-
-  private def getAccuracy() : Double = {
-    return arrotonda((tp + tn) / riga.toDouble * 100)
-  }
-
-  private def getPrecision(): Double = {
-    return arrotonda(tp / (tp + fp).toDouble * 100)
-  }
-
-  private def getRecall(): Double = {
-    return arrotonda(tp / (tp + fn).toDouble * 100)
-  }
-
+  private def percTrainPos : Double = arrotonda(kpos*100)
+  private def percTrainNeg: Double = arrotonda(kneg*100)
+  private def percTestPos : Double = arrotonda(100-kpos*100)
+  private def percTestNeg: Double = arrotonda(100-kneg*100)
+  private def getTrainPos: Int = trainPos.toInt
+  private def getTrainNeg: Int = trainNeg.toInt
+  private def getTestPos: Int =  dataPos - getTrainPos
+  private def getTestNeg: Int =  dataNeg - getTrainNeg
+  private def getAccuracy: Double =  arrotonda((tp + tn) / riga.toDouble * 100)
+  private def getPrecision: Double =  arrotonda(tp / (tp + fp).toDouble * 100)
+  private def getRecall: Double =  arrotonda(tp / (tp + fn).toDouble * 100)
   // arrotonda  a 3 cifre decimali
+  private def arrotonda(x: Double) : Double =  BigDecimal( x ).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
 
-  private def arrotonda(x: Double) : Double = {
-    return BigDecimal(( x )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
-  }
 
 }

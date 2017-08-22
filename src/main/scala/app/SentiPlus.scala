@@ -16,6 +16,10 @@ object SentiPlus {
     /* Leggi la configurazione */
 
     val sc = new SparkContext(new SparkConf().setMaster("local").setAppName("Sentiplus"))
+
+    // mostra solo i log in caso di errore
+    sc.setLogLevel("ERROR")
+
     val file_input = sc.textFile("data/config.sp")
     val totLines = file_input.count().toInt
     val lines = file_input.take(totLines)
@@ -57,7 +61,7 @@ object SentiPlus {
           val totLines = args(1).toInt
 
           /* salta la prima linea che costituisce l'header */
-          val tweets = file_input.take(totLines+1).filter((row => row != header))
+          val tweets = file_input.take(totLines+1).filter(row => row != header)
           SentiReader.leggiCSV(tweets)
         }
 
