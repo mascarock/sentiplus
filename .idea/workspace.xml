@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e93121f-2dc0-4579-a11b-f9f365faee60" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Sentiplus-7.0.jar" afterPath="$PROJECT_DIR$/target/Sentiplus-7.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/config.sp" afterPath="$PROJECT_DIR$/data/config.sp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/run" afterPath="$PROJECT_DIR$/target/run" />
     </list>
     <ignored path="Sentiplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -822,7 +822,13 @@
       <option name="project" value="LOCAL" />
       <updated>1503434711149</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="debugging Hashing TF">
+      <created>1503435782670</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1503435782670</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
