@@ -1,10 +1,7 @@
-
 package app
 
 import app.attivita.{SentiClassifier, SentiReader}
-import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
-import attivita.Classifier
 
 /**
   * SentiPlus
@@ -60,7 +57,7 @@ object SentiPlus {
           val totLines = args(1).toInt
 
           /* salta la prima linea che costituisce l'header */
-          val tweets = file_input.take(totLines).filter((row => row != header))
+          val tweets = file_input.take(totLines+1).filter((row => row != header))
           SentiReader.leggiCSV(tweets)
         }
 
@@ -77,9 +74,6 @@ object SentiPlus {
 
   }
 }
-   /*
-
-
 
     /* classificazione
     * 9231L
@@ -88,7 +82,6 @@ object SentiPlus {
     * 1124152
     * 1152161
     * */
-
 
     //val classificatore = new Classifier()
     //classificatore.run(posTweets, negTweets, __SEED, __SEEB, __FEATURES) */

@@ -45,29 +45,42 @@ Questo è un estratto di risultato che si dovrebbe ottenere eseguendo il comando
 
 [...]
 
-Tweet in esame: marino gli ha preparato un buon intrallazzo e lui e  immediatamente pa ito   si pa ito di testa
+Tweet in esame:  mafiacapitale 96 giornalisti denunciati esposto imbarazzante 
 > Previsione:  0.0
-> Etichetta: 0
-OK! :)
+> Etichetta: 0 
+OK! :) 
 
-Tweet in esame:  mafiacapitale  alemanno e marino conoscevano le irregolarit  negli appalti
+Tweet in esame:  chiocci alemanno mi chiese di incontrare buzzi mafiacapitale si arricchisce ogni giorno di pi 
 > Previsione:  0.0
-> Etichetta: 0
-OK! :)
+> Etichetta: 0 
+OK! :) 
 
-Tweet in esame:  chiocci    alemanno mi chiese di incontrare buzzi   mafiacapitale   si arricchisce ogni giorno di pi
+Tweet in esame:  piazzapulita i candidati alla successione di marino stanno gi pensando alle strategie alternative per rifare un altra mafiacapitale
 > Previsione:  0.0
-> Etichetta: 0
-OK! :)
+> Etichetta: 0 
+OK! :) 
+
 
 
 ++++++++ RISULTATI ++++++++++
-Identificati: 555 su 612
-Accuratezza: 90.68%
-Precisione: 9.09
-Richiamo: 5.12
+Sono stati processati 890 tweet, così divisi
+> Valore positivo: 180
+> Valore negativo: 710
 
-grazie per aver usato Sentiplus.
+L'insieme train è costituito da: 292 tweet, così diviso: 
+> Train Set Negativo: 21.31% totale: 146 su: 710
+> Train Set Positivo: 84.056% totale: 146 su: 180
+
+L'insieme test è costituito da: 598 così diviso: 
+> Test Set Negativo: 78.69% totale: 564 su: 710
+> Test Set Positivo: 15.944% totale: 34 su: 180
+
+Identificati: 480 su 598
+> Accuratezza: 80.268%
+> Precisione: 3.333
+> Richiamo: 8.824
+
+Grazie per aver usato Sentiplus. 
 
 
 ```

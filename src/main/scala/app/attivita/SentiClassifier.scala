@@ -4,7 +4,6 @@ import org.apache.spark.mllib.feature.HashingTF
 import org.apache.spark.mllib.classification.LogisticRegressionWithLBFGS
 import org.apache.spark.mllib.regression.LabeledPoint
 
-
 /**
   * SentiClassifier
   * Classifica il testo utilizzando una regressione logistica
@@ -24,24 +23,17 @@ object SentiClassifier {
   private var riga = 0
   private var azzeccati = 0
 
-  private var negX = 0.0
-  private var posX = 0.0
+  // elementi positivi
+  private var dataPos = 0
+  private var dataNeg = 0
 
-  private var dataPos = 0.0
-  private var dataNeg = 0.0
+  // train set
+  private var trainPos = 0.0
+  private var trainNeg = 0.0
 
-  private var testPos = 0.0
-  private var testNeg = 0.0
-
+  // percentuale train set
   private var kpos = 0.0
   private var kneg = 0.0
-
-    /** calcolo della percentuale
-      * per avere un bilanciamento
-      * tra dati positivi e dati negativi
-      * nel caso di dataset non bilanciati
-      *
-      */
 
   /** Valuta per ogni array di stringhe positive e negative il sentimento espresso
     * @param posTweets un RDD di Stringhe positive
@@ -52,31 +44,24 @@ object SentiClassifier {
 
   def classifica(posTweets: RDD[String], negTweets: RDD[String], __SEED:Long, __SEEB:Long, __FEATURES:Int) {
 
-    dataPos = posTweets.count().toDouble
-    dataNeg = negTweets.count().toDouble
+    dataPos = posTweets.count().toInt
+    dataNeg = negTweets.count().toInt
 
 
-    /*
-    OLD: queste due righe servono per bilanciare un dataset 50 train e 50 test
-    negX = BigDecimal((dataPos / (dataNeg + dataPos))).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
-    posX = BigDecimal(1 - negX).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
-    */
-
-    // ottimali per CSV
-    // 80 20
-    // 60 40
-    // insieme di tweet positivi e negativi posX, negX
-
-    bilancia(dataPos.toInt,dataNeg.toInt)
+    /** calcolo della percentuale
+      * per avere un bilanciamento
+      * tra dati positivi e dati negativi
+      * nel caso di dataset non bilanciati
+      *
+      */
+    bilancia(dataPos,dataNeg)
 
     val posSplits = posTweets.randomSplit(Array(kpos,1-kpos), __SEED)
     val negSplits = negTweets.randomSplit(Array(kneg,1-kneg), __SEEB)
 
-    negX = negSplits(0).count() / dataNeg
-    posX = posSplits(0).count() / dataPos
 
-    testPos = posSplits(0).count()
-    testNeg = negSplits(0).count()
+    trainPos = posSplits(0).count()
+    trainNeg = negSplits(0).count()
 
 
     val tf = new HashingTF(numFeatures = __FEATURES)
@@ -92,7 +77,6 @@ object SentiClassifier {
     val negativeExamples = negFeatures.map(features => LabeledPoint(0, features))
 
     // allena il sistema: apprendimento
-
     val trainingData = positiveExamples ++ negativeExamples
     trainingData.cache()
 
@@ -118,41 +102,38 @@ object SentiClassifier {
 
     /* DEcommentare le seguenti linee per ingrandire l'insieme di test
     *  con i tweet usati in fase di apprendimento
-    *
     */
 
     //testerPositive = posSplits(1) .union(posSplits(0))
     //testerNegative = negSplits(1) .union(negSplits(0))
 
-    /* Commentare le seguenti linee per testare il modello
-    *  su altri tweet già pre-etichettati
+    /* DECommentare le seguenti linee per testare il modello
+    *  Su altri tweet già pre-etichettati
     */
 
     //testerPositive = sc.textFile("yourtweets/pos")
     //testerNegative = sc.textFile("yourtweets/neg")
 
 
-    /* valuta il modello sui tweet positivi
-
-     */
+    /* valuta il modello sui tweet positivi */
     for (twt <- testerPositive) {
 
       val singleTweet = tf.transform(twt)
 
-      /*
+
       println(" tweet in esame: " + twt)
       println(s"Previsione: ${model.predict(singleTweet).toFloat}")
       println("Etichetta: 1 ")
-      */
+
 
       if (model.predict(singleTweet).toInt == 1) {
         azzeccati += 1
-        //println("OK! :) ")
+        println("OK! :) ")
         tp += 1
       }
 
       else {
-        //println("NO :(")
+        println("NO :(")
         fn += 1
       }
 
@@ -160,28 +141,26 @@ object SentiClassifier {
     }
 
 
-    /* valuta il modello sui tweet negativi
-
-     */
+    /* valuta il modello sui tweet negativi */
 
 
     for (twt <- testerNegative) {
       val singleTweet = tf.transform(twt)
 
-      /*
+
       println("\nTweet in esame: " + twt)
       println(s"> Previsione:  ${model.predict(singleTweet).toFloat}")
       println("> Etichetta: 0 ")
-      */
+
 
       if (model.predict(singleTweet).toInt == 0) {
         azzeccati += 1
-        //println("OK! :) ")
+        println("OK! :) ")
         tn += 1
       }
 
       else {
-        //println("NO :( ")
+        println("NO :( ")
         fp += 1
       }
       riga += 1
@@ -194,28 +173,48 @@ object SentiClassifier {
     * @return void
     */
 
-
   def risultato(): Unit = {
 
-    val accuracy = BigDecimal(( (tp + tn) / riga.toDouble * 100 )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
-    val precision = BigDecimal(( tp / (tp + fp).toDouble * 100 )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
-    val recall = BigDecimal(( tp / (tp + fn).toDouble * 100 )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+    println("++++++++ RISULTATI ++++++++++")
 
+    println("Sono stati processati " + (dataNeg + dataPos) + " tweet, così divisi")
+    println("> Valore positivo: " + dataPos)
+    println("> Valore negativo: " + dataNeg)
 
-    println("${Console.GREEN} ++++++++ RISULTATI ++++++++++")
+    println("\nL'insieme train è costituito da: " + (getTrainPos() + getTrainNeg()) + " tweet, così diviso: ")
+    println("> Train Set Negativo: " + percTrainNeg() + "% totale: " + getTrainNeg() + " su: " + dataNeg)
+    println("> Train Set Positivo: " + percTrainPos() + "% totale: " + getTrainPos() + " su: " + dataPos)
 
-    println("Identificati: " + (tp + tn) + " su " + riga)
-    println("> Train Set Negativo: " + getNegX()*100 + "% totale: " + getTestNeg() + " su: " + dataNeg)
-    println("> Train Set Positivo: " + getPosX()*100 + "% valore: " + getTestPos() + " su: " + dataPos)
-    println("Accuratezza: " + accuracy + "%")
-    println("Precisione: " + precision)
-    println("Richiamo: " + recall)
+    println("\nL'insieme test è costituito da: " + (getTestPos() + getTestNeg()) + " così diviso: ")
+    println("> Test Set Negativo: " + arrotonda(percTestNeg()) + "% totale: " + getTestNeg() + " su: " + dataNeg)
+    println("> Test Set Positivo: " + arrotonda(percTestPos()) + "% totale: " + getTestPos() + " su: " + dataPos)
 
-    println("\ngrazie per aver usato Sentiplus. ")
+    println("\nIdentificati: " + (tp + tn) + " su " + riga)
+    println("> Accuratezza: " + getAccuracy() + "%")
+    println("> Precisione: " + getPrecision() )
+    println("> Richiamo: " + getRecall())
+
+    println("\nGrazie per aver usato Sentiplus. ")
 
   }
 
+
+  /** Descrivi i risultati ottenuti
+    * stampando su schermo
+    * @param pos un intero che rappresenta tweet positivi
+    * @param neg un intero che rappresenta tweet negativi
+    */
+
   def bilancia(pos: Integer, neg: Integer) = {
+
+    /*
+
+   Bilanciamento al 50%:
+   negX = BigDecimal((dataPos / (dataNeg + dataPos))).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+   posX = BigDecimal(1 - negX).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+
+   */
+
 
     var testerPos = 0.0
     var testerNeg = 0.0
@@ -253,27 +252,54 @@ object SentiClassifier {
 
   }
 
-  def getNegX() : Double = {
-    return  negX
+  private def percTrainPos() : Double = {
+    return arrotonda(kpos*100)
   }
 
-  def getPosX(): Double = {
-    return posX
+  private def percTrainNeg(): Double = {
+    return arrotonda(kneg*100)
   }
 
-  def getTestPos() : Double = {
-    return testPos
+  private def percTestPos() : Double = {
+    return arrotonda(100-kpos*100)
   }
 
-
-  def getTestNeg() : Double = {
-    return testNeg
+  private def percTestNeg(): Double = {
+    return arrotonda(100-kneg*100)
   }
 
+  private def getTrainPos() : Int = {
+    return trainPos.toInt
+  }
 
+  private def getTrainNeg() : Int = {
+    return trainNeg.toInt
+  }
 
+  private def getTestPos() : Int = {
+    return dataPos - getTrainPos()
+  }
 
+  private def getTestNeg() : Int = {
+    return dataNeg - getTrainNeg()
+  }
 
+  private def getAccuracy() : Double = {
+    return arrotonda((tp + tn) / riga.toDouble * 100)
+  }
 
+  private def getPrecision(): Double = {
+    return arrotonda(tp / (tp + fp).toDouble * 100)
+  }
+
+  private def getRecall(): Double = {
+    return arrotonda(tp / (tp + fn).toDouble * 100)
+  }
+
+  // arrotonda  a 3 cifre decimali
+
+  private def arrotonda(x: Double) : Double = {
+    return BigDecimal(( x )).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
+  }
 
 }
