@@ -131,6 +131,17 @@ object DebugSentiClassifier {
     // AUROC
     val auROC = metrics.areaUnderROC
 
+    println("------ DEBUG ------ ")
+
+    val posTestExample = tf.transform("marino ha tolto il male di roma che bello".split(" "))
+    val negTestExample = tf.transform("mafiacapitale alemanno verme schifoso".split(" "))
+
+    // Ora utilizza il modello allenato su nuovi esempi sconosciuti al modello stesso
+    model.setThreshold(0.5)
+
+    println(s"Previsione per un esempio POSITIVO: ${model.predict(posTestExample)}")
+    println(s"Previsione per un esempio NEGATIVO: ${model.predict(negTestExample)}")
+
 
     println("\nArea sotto la curva P-R = " + arrotonda(auPRC*100) + "% ")
     println("Area sotto la curva ROC = " + arrotonda(auROC*100) + "%" )
@@ -144,6 +155,7 @@ object DebugSentiClassifier {
     */
 
   def risultato(): Unit = {
+
 
     println("\n++++++++ RISULTATI ++++++++++")
 
@@ -160,9 +172,7 @@ object DebugSentiClassifier {
     println("> Test Set Positivo: " + arrotonda(percTestPos) + "% totale: " + getTestPos + " su: " + dataPos)
 
     println("\nIdentificati: " + (tp + tn) + " su " + riga)
-    println("> Accuratezza: " + getAccuracy + "%")
-    println("> Precisione: " + getPrecision )
-    println("> Richiamo: " + getRecall)
+
 
     println("\nGrazie per aver usato Sentiplus. ")
 
