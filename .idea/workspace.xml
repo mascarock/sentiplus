@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8e93121f-2dc0-4579-a11b-f9f365faee60" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/data/config.sp" afterPath="$PROJECT_DIR$/target/data/config.sp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/run" afterPath="$PROJECT_DIR$/target/run" />
     </list>
     <ignored path="Sentiplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,8 +67,8 @@
           </provider>
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor vertical-scroll-proportion="2.1696305">
-                <caret line="114" column="77" selection-start-line="114" selection-start-column="77" selection-end-line="114" selection-end-column="77" />
+              <first_editor vertical-scroll-proportion="0.6621067">
+                <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -715,7 +718,13 @@
       <option name="project" value="LOCAL" />
       <updated>1503400308419</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="esecuzione da linea di comando">
+      <created>1503400313360</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1503400313360</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -729,7 +738,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="35" width="3840" height="2125" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988003" sideWeight="0.49786097" order="6" side_tool="false" content_ui="tabs" />
@@ -1208,8 +1217,8 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor vertical-scroll-proportion="2.1696305">
-            <caret line="114" column="77" selection-start-line="114" selection-start-column="77" selection-end-line="114" selection-end-column="77" />
+          <first_editor vertical-scroll-proportion="0.6621067">
+            <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
             <folding />
           </first_editor>
           <second_editor />
