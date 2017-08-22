@@ -11,6 +11,7 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 
 object SentiPlus {
+  private val _MAXINPUT = 1578628
 
   def main(args: Array[String]) {
     /* Leggi la configurazione */
@@ -32,8 +33,8 @@ object SentiPlus {
     if (args.length == 0 || args.length > 2) {
       println("l'app Sentiplus funziona su due dataset: ITA (1) e ENG (2)\n ")
       println("Utilizzare $SentiPlus 1 per il primo dataset, $ SentiPlus 2 altrimenti")
-
       sc.stop()
+
     }
 
 
@@ -53,8 +54,9 @@ object SentiPlus {
         val file_input = sc.textFile("data/dataset.csv")
         val header = file_input.first()
 
-        if (args(1).toInt > 10000) {
-          println("Superato il limite di tweet. Considero i primi 10000")
+        if (args(1).toInt > _MAXINPUT) {
+          println("Superato il limite di tweet.")
+          sc.stop()
 
         } else {
 
