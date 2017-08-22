@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e93121f-2dc0-4579-a11b-f9f365faee60" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/app/DebugSentiPlus.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" />
     </list>
     <ignored path="Sentiplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,10 +37,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SentiClassifier.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SentiClassifier.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-4.1728973">
               <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
               <folding>
                 <element signature="e#22#58#0" expanded="true" />
@@ -52,10 +49,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DebugSentiClassifier.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DebugSentiClassifier.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29595014">
+            <state vertical-scroll-proportion="0.0">
               <caret line="104" column="81" selection-start-line="104" selection-start-column="81" selection-end-line="104" selection-end-column="81" />
               <folding />
             </state>
@@ -816,7 +813,13 @@
       <option name="project" value="LOCAL" />
       <updated>1503415398654</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="debugging Hashing TF">
+      <created>1503434589913</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1503434589913</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -873,7 +876,8 @@
     <MESSAGE value="leggibilità percentuale" />
     <MESSAGE value="esecuzione da linea di comando" />
     <MESSAGE value="aggiunte metriche e fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunte metriche e fix" />
+    <MESSAGE value="debugging Hashing TF" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugging Hashing TF" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1310,16 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
-          <folding>
-            <element signature="e#22#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/app/DebugSentiPlus.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1330,9 +1324,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/DebugSentiClassifier.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29595014">
+        <state vertical-scroll-proportion="0.0">
           <caret line="104" column="81" selection-start-line="104" selection-start-column="81" selection-end-line="104" selection-end-column="81" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.1728973">
+          <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+          <folding>
+            <element signature="e#22#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
