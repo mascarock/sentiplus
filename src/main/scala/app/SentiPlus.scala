@@ -50,7 +50,7 @@ object SentiPlus {
 
       else if (args.length > 1 && args(0).toInt == 2) {
 
-        val file_input = sc.textFile("data/dataset1m.csv")
+        val file_input = sc.textFile("data/dataset.csv")
         val header = file_input.first()
 
         if (args(1).toInt > _MAXINPUT) {
