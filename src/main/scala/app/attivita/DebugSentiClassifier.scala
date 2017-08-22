@@ -1,12 +1,10 @@
 package app.attivita
 
-import org.apache.spark.SparkContext
-import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
-import org.apache.spark.mllib.util.MLUtils
-import org.apache.spark.rdd.RDD
-import org.apache.spark.mllib.feature.HashingTF
 import org.apache.spark.mllib.classification.LogisticRegressionWithLBFGS
+import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
+import org.apache.spark.mllib.feature.HashingTF
 import org.apache.spark.mllib.regression.LabeledPoint
+import org.apache.spark.rdd.RDD
 
 /**
   * SentiClassifier
@@ -15,7 +13,7 @@ import org.apache.spark.mllib.regression.LabeledPoint
   *
   */
 
-object SentiClassifier {
+object DebugSentiClassifier {
 
   // parametri per valutare metriche
 
@@ -97,74 +95,6 @@ object SentiClassifier {
 
     var testerNegative = negSplits(1)
     var testerPositive = posSplits(1)
-
-    /* DEcommentare le seguenti linee per ingrandire l'insieme di test
-    *  con i tweet usati in fase di apprendimento
-    */
-
-    //testerPositive = posSplits(1) .union(posSplits(0))
-    //testerNegative = negSplits(1) .union(negSplits(0))
-
-    /* DECommentare le seguenti linee per testare il modello
-    *  Su altri tweet già pre-etichettati
-    */
-
-    //testerPositive = sc.textFile("yourtweets/pos")
-    //testerNegative = sc.textFile("yourtweets/neg")
-
-
-    /* valuta il modello sui tweet positivi */
-    for (twt <- testerPositive) {
-
-      val singleTweet = tf.transform(twt)
-
-
-      println(" tweet in esame: " + twt)
-      println(s"Previsione: ${model.predict(singleTweet).toFloat}")
-      println("Etichetta: 1 ")
-
-
-      if (model.predict(singleTweet).toInt == 1) {
-        azzeccati += 1
-        println("OK! :) ")
-        tp += 1
-      }
-
-      else {
-        println("NO :(")
-        fn += 1
-      }
-
-      riga += 1
-    }
-
-
-    /* valuta il modello sui tweet negativi */
-
-
-    for (twt <- testerNegative) {
-      val singleTweet = tf.transform(twt)
-
-
-      println("\nTweet in esame: " + twt)
-      println(s"> Previsione:  ${model.predict(singleTweet).toFloat}")
-      println("> Etichetta: 0 ")
-
-
-      if (model.predict(singleTweet).toInt == 0) {
-        azzeccati += 1
-        println("OK! :) ")
-        tn += 1
-      }
-
-      else {
-        println("NO :( ")
-        fp += 1
-      }
-      riga += 1
-
-    }
-
 
     /* calcola metriche per valutarle */
 
