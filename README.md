@@ -105,7 +105,7 @@ e processa più di un milione di tweet
 
 ```shell
 $ cd target
-$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 2 12000000
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 2 1200000
 ```
 ottenendo:
 
