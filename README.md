@@ -1,7 +1,7 @@
 # Sentiplus
-Un classificatore per individuare il sentimento dei tweet
+Sentiplus - Un classificatore per individuare il sentimento dei tweet
 
-L'obiettivo di Sentiplus è indidivudare il sentimento di un dataset di tweets già etichettato strutturato in modo che sia facilmente estraibile il valore numerico che identifica il sentimento e la stringa che rappresenta il tweet da analizzare. 
+L'obiettivo di Sentiplus è individuare il sentimento di un dataset di tweets già etichettato strutturato in modo che sia facilmente estraibile il valore numerico che identifica il sentimento e la stringa che rappresenta il tweet da analizzare. 
 
 Ad esempio:
 
