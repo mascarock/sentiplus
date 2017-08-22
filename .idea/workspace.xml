@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e93121f-2dc0-4579-a11b-f9f365faee60" name="Default" comment="aggiunte metriche e fix">
+    <list default="true" id="8e93121f-2dc0-4579-a11b-f9f365faee60" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Sentiplus-7.0.jar" afterPath="$PROJECT_DIR$/target/Sentiplus-7.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/app/SentiPlus.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/SentiPlus.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiReader.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/attivita/SentiReader.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/data/config.sp" afterPath="$PROJECT_DIR$/target/data/config.sp" />
     </list>
     <ignored path="Sentiplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,8 +53,8 @@
       <file leaf-file-name="SentiClassifier.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67687076">
-              <caret line="304" column="61" selection-start-line="304" selection-start-column="61" selection-end-line="304" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.4829932">
+              <caret line="205" column="70" selection-start-line="205" selection-start-column="70" selection-end-line="205" selection-end-column="70" />
               <folding>
                 <element signature="e#22#58#0" expanded="true" />
               </folding>
@@ -67,16 +67,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="8" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="run" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/run">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="72" selection-start-line="0" selection-start-column="72" selection-end-line="0" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -798,7 +788,13 @@
       <option name="project" value="LOCAL" />
       <updated>1503400438863</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="aggiunte metriche e fix">
+      <created>1503415398654</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1503415398654</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -1266,14 +1262,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/data/config.sp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="8" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/app/SentiPlus.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1292,10 +1280,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/target/data/config.sp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="8" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/app/attivita/SentiClassifier.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67687076">
-          <caret line="304" column="61" selection-start-line="304" selection-start-column="61" selection-end-line="304" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.4829932">
+          <caret line="205" column="70" selection-start-line="205" selection-start-column="70" selection-end-line="205" selection-end-column="70" />
           <folding>
             <element signature="e#22#58#0" expanded="true" />
           </folding>

@@ -202,8 +202,8 @@ object SentiClassifier {
     val auROC = metrics.areaUnderROC
 
 
-    println("\nArea under precision-recall curve = " + auPRC)
-    println("Area under ROC = " + auROC)
+    println("\nArea sotto la curva P-R = " + arrotonda(auPRC*100) + "% ")
+    println("Area sotto la curva ROC = " + arrotonda(auROC*100) + "%" )
 
 
   }
