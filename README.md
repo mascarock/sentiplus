@@ -61,7 +61,7 @@ $ ./make
 Questo comando utilizza il dataset "1" riguardante il topic "politica2015"
 ```shell
 $ cd target
-$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-6.5-SNAPSHOT.jar 1 
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 1 
 ```
 ottenendo:
 
@@ -69,13 +69,40 @@ ottenendo:
 
 [...]
 
-++++++++ RISULTATI ++++++++++
-Identificati: 555 su 612
-Accuratezza: 90.68%
-Precisione: 9.09
-Richiamo: 5.12
+Tweet in esame:  chiocci alemanno mi chiese di incontrare buzzi mafiacapitale si arricchisce ogni giorno di pi 
+> Previsione:  0.0
+> Etichetta: 0 
+OK! :) 
 
-grazie per aver usato Sentiplus.
+Tweet in esame:  piazzapulita i candidati alla successione di marino stanno gi pensando alle strategie alternative per rifare un altra mafiacapitale
+> Previsione:  0.0
+> Etichetta: 0 
+OK! :) 
+
+Tweet in esame:  pansa vi spiego xch renzi salva marino e xch la pagher cara sfacelo & drammadi mafiacapitale e dintorni 
+> Previsione:  0.0
+> Etichetta: 0 
+OK! :) 
+
+
+++++++++ RISULTATI ++++++++++
+Sono stati processati 890 tweet, così divisi
+> Valore positivo: 180
+> Valore negativo: 710
+
+L'insieme train è costituito da: 315 tweet, così diviso: 
+> Train Set Negativo: 21.31% totale: 151 su: 710
+> Train Set Positivo: 84.056% totale: 164 su: 180
+
+L'insieme test è costituito da: 575 così diviso: 
+> Test Set Negativo: 78.69% totale: 559 su: 710
+> Test Set Positivo: 15.944% totale: 16 su: 180
+
+Identificati: 489 su 575
+> Accuratezza: 85.043%
+> Precisione: 1.389
+> Richiamo: 6.25
+.
 
 
 ```
@@ -85,22 +112,46 @@ Questo comando utilizza il dataset "2" [Twitter Sentiment Analysis Corpus](http:
 
 ```shell
 $ cd target
-$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-6.5-SNAPSHOT.jar 2 9600
+$ spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.jar 2 8500
 ```
 ottenendo:
 
 ```
 [...]
 
-Identificati: 2269 su 3077
-> Train Set Negativo: 57.18531468531468% totale: 3271.0 su: 5720.0
-> Train Set Positivo: 83.81026037638567% valore: 3251.0 su: 3879.0
-Accuratezza: 73.741%
-Precisione: 23.214
-Richiamo: 12.42
+Tweet in esame:  yancey replaced me p s i m going all in now it s now or never 
+> Previsione:  0.0
+> Etichetta: 0 
+OK! :) 
 
+Tweet in esame:  fwah big d s was closed when we went there just now pftttttt ima go to bed now gonna wake up in 6hrs time 
+> Previsione:  0.0
+> Etichetta: 0 
+OK! :) 
 
-grazie per aver usato Sentiplus.
+Tweet in esame:  i drank milk so now im so sick seriously 
+> Previsione:  1.0
+> Etichetta: 0 
+NO :( 
+
+++++++++ RISULTATI ++++++++++
+Sono stati processati 8500 tweet, così divisi
+> Valore positivo: 3260
+> Valore negativo: 5240
+
+L'insieme train è costituito da: 5545 tweet, così diviso: 
+> Train Set Negativo: 52.719% totale: 2796 su: 5240
+> Train Set Positivo: 84.739% totale: 2749 su: 3260
+
+L'insieme test è costituito da: 2955 così diviso: 
+> Test Set Negativo: 47.281% totale: 2444 su: 5240
+> Test Set Positivo: 15.261% totale: 511 su: 3260
+
+Identificati: 2299 su 2955
+> Accuratezza: 77.8%
+> Precisione: 19.665
+> Richiamo: 9.198
+
 ```
 
 ---
