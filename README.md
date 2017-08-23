@@ -112,41 +112,42 @@ ottenendo:
 ```
 [...]
 
-Tweet in esame:  slumdog millionaire is a decent flick hadn t seen it till tonight i m just home and prob wont sleep tiil the early hours boo 
-> Previsione:  0.0
-> Etichetta: 0 
-OK! :) 
-
-Tweet in esame: smart bro is breaking my heart 
+Tweet in esame: time to hit the gym see y all in a bit 
 > Previsione:  1.0
 > Etichetta: 0 
 NO :( 
 
-Tweet in esame:  smh im sick with this bug that s going around almost everyone i know is sick including me 
+Tweet in esame: time to hit the sack i m feeling a bit sick hopefully cold is not getting near me 
 > Previsione:  0.0
 > Etichetta: 0 
 OK! :) 
 
-Area sotto la curva PR = 83.321% 
-Area sotto la curva ROC = 81.625%
+Tweet in esame: time to lay down and unwind missing him like crazy 
+> Previsione:  0.0
+> Etichetta: 0 
+OK! :) 
+
+Area sotto la curva PR = 79.83% 
+Area sotto la curva ROC = 83.083%
 
 ++++++++ RISULTATI ++++++++++
-Sono stati processati 1200000 tweet, così divisi
-> Valore positivo: 622841
-> Valore negativo: 577159
+Sono stati processati 1550000 tweet, così divisi
+> Valore positivo: 778104
+> Valore negativo: 771896
 
-L'insieme train è costituito da 972350 tweet, così diviso: 
-> Train Set Negativo: 84.206% totale: 486154 su: 577159
-> Train Set Positivo: 78.03% totale: 486196 su: 622841
+L'insieme train è costituito da 1302165 tweet, così diviso: 
+> Train Set Negativo: 84.338% totale: 650986 su: 771896
+> Train Set Positivo: 83.665% totale: 651179 su: 778104
 
-L'insieme test è costituito da 227650 tweet così diviso: 
-> Test Set Negativo: 15.794% totale: 91005 su: 577159
-> Test Set Positivo: 21.97% totale: 136645 su: 622841
+L'insieme test è costituito da 247835 tweet così diviso: 
+> Test Set Negativo: 15.662% totale: 120910 su: 771896
+> Test Set Positivo: 16.335% totale: 126925 su: 778104
 
-Identificati: 174625 su 227650
-> Accuratezza: 76.708%
-> Precisione: 82.902
-> Richiamo: 77.095
+Identificati: 192095 su 247835
+> Accuratezza: 77.509%
+> Precisione: 78.131
+> Richiamo: 77.885
+
 
 
 ```
