@@ -20,7 +20,7 @@ La stringa che segue il carattere \"|\" rappresenta il tweet da analizzare.
 
 ## Funzionamento
 
-Il funzionamento del classificatore prevede l'utilizzo di un algoritmo di classificazione denominato L-BFG
+Il funzionamento del classificatore prevede l'utilizzo di un algoritmo di classificazione denominato L-BFGS
 
 I dovuti approfondimenti saranno discussi nella tesi di laurea associata al progetto.
 
