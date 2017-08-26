@@ -19,7 +19,7 @@ object SentiPlus {
     val sc = new SparkContext(new SparkConf().setMaster("local").setAppName("Sentiplus"))
 
     // mostra solo i log in caso di errore
-    //sc.setLogLevel("ERROR")
+    sc.setLogLevel("ERROR")
 
     val file_input = sc.textFile("data/config.sp")
     val totLines = file_input.count().toInt
