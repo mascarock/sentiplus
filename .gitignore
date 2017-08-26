@@ -1,6 +1,9 @@
 *.log
 *.zip
 dataset1m.csv
+/target/README.txt
+/target/LICENCE
+/raget/REQUIREMENTS
 
 # For Hive
 TempStatsStore/

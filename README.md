@@ -33,10 +33,18 @@ Riga| Significato
 1 | Random Seed per mischiare i tweet positivi
 2 | Random Seed per mischiare i tweet negativi
 3 | Numero di Features
+4 | Valore percentuale per il train dei tweet positivi
+5 | Valore percentuale per il train dei tweet negativi
+6 | Valore booleano per definire quantità tweet da testare (0: automatico, 1: tutti)
 
 Il random Seed è qualsiasi numero intero a 32 bit, utilizzato per controllare la sequenza generata da un'esecuzione di un algoritmo di divisione randomica. Ciascun Seed corrisponde a una e una sola sequenza. La più piccola modifica di quel numero potrebbe generare in una squenza completamente diversa.
 
 Il numero di features rappresenta il numero di parole per allenare il modello matematico.
+
+Il valore percentuale (0.6 per indicare 60%) permette di definire quanti tweet utilizzare per allenare il modello, sia per i tweet positivi che negativi.
+
+Il valore booleano permette di stabilire se utilizzare tutto l'insieme dei tweet (1) oppure l'insieme di test, definito come 1 - train ovvero se abbiamo usato il 60% dell'insieme train, allora il test sarà necessariamente il 40%.
+
 
 ## Esecuzione
 

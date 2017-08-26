@@ -39,6 +39,10 @@ object SentiClassifier {
   private var kpos = 0.0
   private var kneg = 0.0
 
+  // percentuale test set
+  private var tpos = 0
+  private var tneg = 0
+
 
   /** Valuta per ogni array di stringhe positive e negative il sentimento espresso
     *
@@ -48,7 +52,7 @@ object SentiClassifier {
     *
     */
 
-  def classifica(posTweets: RDD[String], negTweets: RDD[String], __SEED:Long, __SEEB:Long, __FEATURES:Int) {
+  def classifica(posTweets: RDD[String], negTweets: RDD[String], __SEED:Long, __SEEB:Long, __FEATURES:Int, __TRAINPOS: Double, __TRAINEG: Double, __TOTSET: Int) {
 
     dataPos = posTweets.count().toInt
     dataNeg = negTweets.count().toInt
@@ -60,7 +64,14 @@ object SentiClassifier {
       * nel caso di dataset non bilanciati
       *
       */
-    bilancia(dataPos,dataNeg)
+
+    if (__TRAINPOS < 0.1 || __TRAINEG < 0.1 || __TRAINPOS > 0.9 || __TRAINEG > 0.9) {
+      println("Scelto bilanciamento automatico")
+      bilancia(dataPos,dataNeg)
+    } else{
+      kpos = __TRAINPOS
+      kneg = __TRAINEG
+    }
 
     val posSplits = posTweets.randomSplit(Array(kpos,1-kpos), __SEED)
     val negSplits = negTweets.randomSplit(Array(kneg,1-kneg), __SEEB)
@@ -98,12 +109,20 @@ object SentiClassifier {
     var testerNegative = negSplits(1)
     var testerPositive = posSplits(1)
 
-    /* DEcommentare le seguenti linee per ingrandire l'insieme di test
-    *  con i tweet usati in fase di apprendimento
-    */
 
-    //testerPositive = posSplits(1) .union(posSplits(0))
-    //testerNegative = negSplits(1) .union(negSplits(0))
+    // l'utente ha scelto nel file di configurazione di testare Sentiplus su tutto l'insieme
+
+    if (__TOTSET > 0 ) {
+
+      println("Testo su tutto l'insieme di tweet ")
+      testerPositive = posSplits(1) .union(posSplits(0))
+      testerNegative = negSplits(1) .union(negSplits(0))
+
+      tpos = 1
+      tneg = 1
+
+    }
+
 
     /* DECommentare le seguenti linee per testare il modello
     *  Su altri tweet già pre-etichettati
@@ -292,15 +311,16 @@ object SentiClassifier {
 
   private def percTrainPos : Double = arrotonda(kpos*100)
   private def percTrainNeg: Double = arrotonda(kneg*100)
-  private def percTestPos : Double = arrotonda(100-kpos*100)
-  private def percTestNeg: Double = arrotonda(100-kneg*100)
+  private def percTestPos : Double = if (tpos != 1 ) arrotonda(100-kpos*100) else 100
+  private def percTestNeg: Double =  if (tneg != 1)  arrotonda(100-kneg*100) else 100
   private def getTrainPos: Int = trainPos.toInt
   private def getTrainNeg: Int = trainNeg.toInt
-  private def getTestPos: Int =  dataPos - getTrainPos
-  private def getTestNeg: Int =  dataNeg - getTrainNeg
+  private def getTestPos: Int =  if (tpos != 1) dataPos - getTrainPos else dataPos
+  private def getTestNeg: Int =  if (tneg != 1) dataNeg - getTrainNeg else dataNeg
   private def getAccuracy: Double =  arrotonda((tp + tn) / riga.toDouble * 100)
   private def getPrecision: Double =  arrotonda(tp / (tp + fp).toDouble * 100)
   private def getRecall: Double =  arrotonda(tp / (tp + fn).toDouble * 100)
+
   // arrotonda  a 3 cifre decimali
   private def arrotonda(x: Double) : Double =  BigDecimal( x ).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
 

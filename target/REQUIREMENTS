@@ -1,0 +1,20 @@
+in breve
+
+* Java
+* Scala
+* Apache Spark
+* Apache Maven
+
+Maven:
+
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+mvn --version
+
+Versioni
+
+* scala-sdk >= 2.10.4
+* java-jdk > 1.8.0
+* spark-assembly >= 1.6.0
+* hadoop >= 2.6.0

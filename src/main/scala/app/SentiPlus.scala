@@ -11,7 +11,7 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 
 object SentiPlus {
-  private val _MAXINPUT = 1578628
+  private val __MAXINPUT = 1578628
 
   def main(args: Array[String]) {
     /* Leggi la configurazione */
@@ -19,7 +19,7 @@ object SentiPlus {
     val sc = new SparkContext(new SparkConf().setMaster("local").setAppName("Sentiplus"))
 
     // mostra solo i log in caso di errore
-    sc.setLogLevel("ERROR")
+    //sc.setLogLevel("ERROR")
 
     val file_input = sc.textFile("data/config.sp")
     val totLines = file_input.count().toInt
@@ -28,7 +28,9 @@ object SentiPlus {
     val __SEED = lines(0).toLong
     val __SEEB = lines(1).toLong
     val __FEATURES = lines(2).toInt
-
+    val __TRAINPOS = lines(3).toDouble
+    val __TRAINEG = lines(4).toDouble
+    val __TOTSET = lines(5).toInt
 
     if (args.length == 0 || args.length > 2) {
       println("l'app Sentiplus funziona su due dataset: ITA (1) e ENG (2)\n ")
@@ -53,7 +55,7 @@ object SentiPlus {
         val file_input = sc.textFile("data/dataset.csv")
         val header = file_input.first()
 
-        if (args(1).toInt > _MAXINPUT) {
+        if (args(1).toInt > __MAXINPUT) {
           println("Superato il limite di tweet.")
           sc.stop()
 
@@ -69,7 +71,7 @@ object SentiPlus {
 
       val posTweets = sc.parallelize(SentiReader.getPosTweets)
       val negTweets = sc.parallelize(SentiReader.getNegTweets)
-      SentiClassifier.classifica(posTweets, negTweets, __SEED, __SEEB, __FEATURES)
+      SentiClassifier.classifica(posTweets, negTweets, __SEED, __SEEB, __FEATURES, __TRAINPOS, __TRAINEG, __TOTSET)
       SentiClassifier.risultato()
 
       sc.stop()
@@ -79,14 +81,4 @@ object SentiPlus {
   }
 }
 
-    /* classificazione
-    * 9231L
-    * 10621L
-    * 95000
-    * 1124152
-    * 1152161
-    * */
-
-    //val classificatore = new Classifier()
-    //classificatore.run(posTweets, negTweets, __SEED, __SEEB, __FEATURES) */
 
