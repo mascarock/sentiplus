@@ -17,7 +17,6 @@ Valore numerico | Sentimento
 La stringa che segue il carattere \"|\" rappresenta il tweet da analizzare.
 
 
-
 ## Funzionamento
 
 Il funzionamento del classificatore prevede l'utilizzo di un algoritmo di classificazione denominato L-BFGS
@@ -26,7 +25,7 @@ I dovuti approfondimenti saranno discussi nella tesi di laurea associata al prog
 
 ## Configurazione
 
-Il file [config.sp](https://github.com/mascarock/sentiplus/blob/master/target/data/config.sp) contiene tre righe, che rappresentano
+Il file [config.sp](https://github.com/mascarock/sentiplus/blob/master/target/data/config.sp) contiene sei righe, che rappresentano
 
 Riga| Significato
 ------------ | -------------
