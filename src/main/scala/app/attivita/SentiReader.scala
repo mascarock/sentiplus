@@ -13,7 +13,7 @@ object SentiReader {
   val __SENTIPOS = 1
 
   // pattern per pulire il tweet
-  val cleaner = "&(.+;)|http|\\\"|\\,|\\+|\\'|…|\\/|\\>|\\?|\\[|\\]|\\-|\\(|\\)|\\W+…|&gt;|RT|\\.|!|“|”|->|\\#|:|@\\w+\\S+|\\\\\"|\\\\\" ".r
+  val cleaner = "&(.+;)|http|\\\"|\\,|\\+|\\'|…|\\/|\\>|\\?|\\[|\\]|\\-|\\(|\\)|\\W+…|&gt;|RT|\\.|!|“|”|\\*|«|»|->|\\#|:|@\\w+\\S+|\\\\\"|\\\\\" ".r
   val url = "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
 
   private var posTweets = new ArrayBuffer[String]()
@@ -65,26 +65,22 @@ object SentiReader {
     var grezzo = ""
     var sentiment = 0
     var id = ""
-    var code = 1
 
     for (tweet <- tweets) {
 
        tweet match {
        case pattern(a, b, c, d) => (id = a, sentiment = b.toInt, c , grezzo = d )
       }
-
       /* DEBUG
-
       println("ID: " + id)
       println("Sentiment: " + sentiment)
       println("Tweet: " + grezzo)
-
       */
 
       val fixed = grezzo.replaceAll(url,"")
       val fixedTweet = cleaner.replaceAllIn(fixed," ").replaceAll("\\s+", " ").toLowerCase
 
-      // println("Pulito: " + fixedTweet)
+      //println("Pulito: " + fixedTweet)
 
       if (sentiment == __SENTINEG) {
         negTweets += fixedTweet
@@ -98,6 +94,42 @@ object SentiReader {
 
   }
 
+  def leggiCSVPolitica(tweets: Array[String]) : Unit = {
+
+      val pattern = """"(.+)",(.),(.),(.),(.),(.),(.),(.),"(.+)"""".r
+      var grezzo = ""
+      var sentiment = 0
+      var id = ""
+
+      var opos = 0
+      var oneg = 0
+      var lpos = 0
+      var lneg = 0
+
+      for (tweet <- tweets) {
+
+        tweet match {
+          case pattern(a, b, c, d, e, f, g, h, i) => (id = a, b, opos = c toInt, oneg = d toInt, e, lpos = f toInt, lneg = g toInt, h, grezzo = i)
+        }
+
+        sentiment = opos + lpos - (oneg + lneg)
+
+        val fixed = grezzo.replaceAll(url, "")
+        val fixedTweet = cleaner.replaceAllIn(fixed, " ").replaceAll("\\s+", " ").toLowerCase
+
+        if (sentiment <= __SENTINEG) {
+          negTweets += fixedTweet
+
+        }
+
+        if (sentiment > __SENTIPOS) {
+          posTweets += fixedTweet
+        }
+      }
+
+
+
+  }
 
     /** ottiene l'insieme di tweet identificati come positivi
     * @return posTweets, un array di stringhe di tweet puliti

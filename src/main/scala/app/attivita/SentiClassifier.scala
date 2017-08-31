@@ -39,6 +39,9 @@ object SentiClassifier {
   private var kpos = 0.0
   private var kneg = 0.0
 
+  private var testpos = 0.0
+  private var testneg = 0.0
+
   // percentuale test set
   private var tpos = 0
   private var tneg = 0
@@ -68,13 +71,17 @@ object SentiClassifier {
     if (__TRAINPOS < 0.1 || __TRAINEG < 0.1 || __TRAINPOS > 0.9 || __TRAINEG > 0.9) {
       println("Scelto bilanciamento automatico")
       bilancia(dataPos,dataNeg)
+      testpos = 0.3
+      testneg = 0.3
     } else{
       kpos = __TRAINPOS
       kneg = __TRAINEG
+      testpos = 1 - kpos
+      testneg = 1 - kpos
     }
 
-    val posSplits = posTweets.randomSplit(Array(kpos,1-kpos), __SEED)
-    val negSplits = negTweets.randomSplit(Array(kneg,1-kneg), __SEEB)
+    val posSplits = posTweets.randomSplit(Array(kpos,testpos), __SEED)
+    val negSplits = negTweets.randomSplit(Array(kneg,testneg), __SEEB)
 
 
     trainPos = posSplits(0).count()
@@ -160,7 +167,6 @@ object SentiClassifier {
 
     /* valuta il modello sui tweet negativi */
 
-
     for (twt <- testerNegative) {
       val singleTweet = tf.transform(twt.split(" "))
 
@@ -237,8 +243,8 @@ object SentiClassifier {
     println("\n++++++++ RISULTATI ++++++++++")
 
     println("Sono stati processati " + (dataNeg + dataPos) + " tweet, così divisi")
-    println("> Valore positivo: " + dataPos)
     println("> Valore negativo: " + dataNeg)
+    println("> Valore positivo: " + dataPos)
 
     println("\nL'insieme train è costituito da " + (getTrainPos + getTrainNeg) + " tweet, così diviso: ")
     println("> Train Set Negativo: " + percTrainNeg+ "% totale: " + getTrainNeg + " su: " + dataNeg)
@@ -311,8 +317,8 @@ object SentiClassifier {
 
   private def percTrainPos : Double = arrotonda(kpos*100)
   private def percTrainNeg: Double = arrotonda(kneg*100)
-  private def percTestPos : Double = if (tpos != 1 ) arrotonda(100-kpos*100) else 100
-  private def percTestNeg: Double =  if (tneg != 1)  arrotonda(100-kneg*100) else 100
+  private def percTestPos : Double = if (tpos != 1 ) arrotonda(testpos*100) else 100
+  private def percTestNeg: Double =  if (tneg != 1)  arrotonda(testneg*100) else 100
   private def getTrainPos: Int = trainPos.toInt
   private def getTrainNeg: Int = trainNeg.toInt
   private def getTestPos: Int =  if (tpos != 1) dataPos - getTrainPos else dataPos

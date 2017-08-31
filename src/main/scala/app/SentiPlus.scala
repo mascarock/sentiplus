@@ -43,10 +43,18 @@ object SentiPlus {
 
       if (args(0).toInt == 1) {
 
-        val file_input = sc.textFile("data/TestSet.txt")
+        val file_input = sc.textFile("data/testset.txt")
         val totLines = file_input.count().toInt
         val tweets = file_input.take(totLines)
         SentiReader.leggi(tweets)
+
+      }
+
+      else if (args(0).toInt == 3) {
+        val file_input = sc.textFile("data/sentipolc.csv")
+        val tweets = file_input.take(file_input.count().toInt)
+        SentiReader.leggiCSVPolitica(tweets)
+
 
       }
 
@@ -68,6 +76,7 @@ object SentiPlus {
         }
 
       }
+
 
       val posTweets = sc.parallelize(SentiReader.getPosTweets)
       val negTweets = sc.parallelize(SentiReader.getNegTweets)
