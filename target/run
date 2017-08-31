@@ -1,1 +1,1 @@
-spark-submit --class app.SentiPlus --master local[2] Sentiplus-7.0.jar3
+spark-submit --class app.SentiPlus 2 70000 --master local[2] Sentiplus-7.0.jar
